@@ -3,25 +3,27 @@
 //--------------------------------------------------------------------
 
 #include <iostream>
+#include <print>
 #include "save.h"
+
+// [문제] 전체 구구단을 예시와 꼭 같이 그대로 출력하라 (줄맞춤)
+// 단과 단 사이는 한 줄 띄워라
+
+// (예시)
+// 7 x 1 =  7
+// 7 x 2 = 14
+// ...
+
+// 정답은 format이라고 한다.
 
 int main()
 {
-	std::cout << "구구단을 출력하겠습니다." << std::endl;
-	
-	while (true) {
-		std::cout << "몇 단? ";
-
-		int n;
-		std::cin >> n;
-
-		if (n < 2 || n > 9) {
-			std::cout << "2~9 사이의 값을 입력하세요!" << std::endl;
-			break;
-		}
+	for (int dan = 2; dan <= 9; ++dan) {
 		for (int i = 1; i <= 9; ++i) {
-			std::cout << n << " x " << i << " = " << n * i << std::endl;
+			std::println("{0} x {1} = {2:^20}", dan, i, dan * i); 
+			// #include <print> 사용
 		}
+		std::cout << '\n';
 	}
 	save("메인.cpp");
 }
