@@ -32,7 +32,7 @@ void save(std::string_view fileName)
 	auto now = std::chrono::system_clock::now();			// epoch로 부터 경과된 tick 개수를 얻는다
 	auto utc = std::chrono::system_clock::to_time_t(now);	// UTC
 	auto lt = std::localtime(&utc);							// 지역 시간으로 변경 (OS 기준)
-	auto old = out.imbue(std::locale("ko_KR.UTF-8"));		// 스트림의 지역을 변경
+	auto old = out.imbue(std::locale("en_US.UTF-8"));
 
 	// std::cout << "현재 시간 - " << std::put_time(lt, "%c %A") << '\n';
 
