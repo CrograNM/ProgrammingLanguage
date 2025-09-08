@@ -13,11 +13,10 @@
 int main()
 //--------
 {
-	int n = 0B01111111'11111111'11111111'11111111;
+	long long n = std::numeric_limits<long long>::max(); 
+	// long long int, short int 등에서 int 생략 가능
 
-	n = n + 1;
-
-	std::cout << "현재 n에 저장된 값 - " << n << '\n';
+	std::cout << n << '\n';
 
 	save("메인.cpp");
 }
