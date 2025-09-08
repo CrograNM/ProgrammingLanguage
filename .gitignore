@@ -1,0 +1,48 @@
+# Visual C++
+
+## Build artifacts
+*.exe
+*.dll
+*.obj
+*.o
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.suo
+*.user
+*.ncb
+*.aps
+*.rc2
+*.res
+*.sbr
+*.tlog
+*.log
+*.bak
+*.tmp
+*.vspscc
+*.vssscc
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.bak
+*.vsp
+*.ipch
+
+## Visual Studio
+.vs/
+bin/
+Debug/
+Release/
+ipch/
+*.VC.db
+*.VC.VC.opendb
+*.VC.VC.opendb.log
+
+## User-specific files
+_ReSharper.*/
+*.sln.docstates
+*.sln.suo
+
+## Test results
+TestResults/
+*.trx
