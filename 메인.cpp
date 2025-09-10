@@ -7,19 +7,22 @@
 #include <iostream>
 #include "save.h"
 
+// [문제] int값 2개를 입력받아 합계를 알려주는 함수 add를 작성하라.
+// 다음 main이 문제없이 실행되어야 한다.
+int add(int a, int b)
+{
+	return a + b;
+}
+
 //--------
 int main()
 //--------
 {
-	// [실습] 다른 type으로 바꿔 관찰
-	char n; 
-	// 왜 얘만 메모리 주소가 깨지냐? 
-
-	// 이름 붙인 변수 n이 있다면 이것의 정체를 언제나 다음 3가지 코드로 파악할 수 있다.
-	
-	std::cout << "n의 메모리 크기 - " << sizeof n << "\n"; // 유일하게 sizeof는 괄호 생략 표현이 가능
-	std::cout << "n의 메모리 주소 - " << (void*)std::addressof(n) << "\n";
-	std::cout << "n의 데이터 타입 - " << typeid(n).name() << "\n";
+	std::cout << "합계를 알려줍니다" << '\n';
+	std::cout << "int값 2개를 입력하세요: ";
+	int a, b;
+	std::cin >> a >> b;
+	std::cout << a << " + " << b << " = " << add(a, b) << '\n';
 
 	save("메인.cpp");
 }
