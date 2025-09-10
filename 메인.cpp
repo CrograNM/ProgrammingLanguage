@@ -7,22 +7,16 @@
 #include <iostream>
 #include "save.h"
 
-// 메모리를 달라는 요청은 3가지(메모리가 생성되는 위치) 밖에 없다.
-
-// [실습] 각 메모리의 위치를 출력해본다.
-
-int n; // 2. 전역변수(Global)
-
 //--------
 int main()
 //--------
 {
-	int n;	// 1. 지역변수(Local)
-	std::cout << "지역변수 n의 주소: " << std::addressof(n) << '\n';
-	std::cout << "전역변수 n의 주소: " << std::addressof(::n) << '\n'; 
-	// 사실 이름을 바꾸는 게 맞지만, ::n으로 전역변수 접근이 가능하다.
 
-	new int; // 3. 동적할당(Dynamic Allocation)
+	/*
+	낮은 번지	STACK - 지역변수가 저장되는 영역						int main() { *----* }
+				Free Store (Heap) - 동적할당된 변수가 저장되는 영역	*new int;*
+	높은 번지	DATA - 전역변수가 저장되는 영역						*----* int main() {}
+	*/
 
 	save("메인.cpp");
 }
