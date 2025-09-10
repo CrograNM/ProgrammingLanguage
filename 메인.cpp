@@ -11,12 +11,15 @@
 int main()
 //--------
 {
+	// [실습] 다른 type으로 바꿔 관찰
+	char n; 
+	// 왜 얘만 메모리 주소가 깨지냐? 
 
-	/*
-	낮은 번지	STACK - 지역변수가 저장되는 영역						int main() { *----* }
-				Free Store (Heap) - 동적할당된 변수가 저장되는 영역	*new int;*
-	높은 번지	DATA - 전역변수가 저장되는 영역						*----* int main() {}
-	*/
+	// 이름 붙인 변수 n이 있다면 이것의 정체를 언제나 다음 3가지 코드로 파악할 수 있다.
+	
+	std::cout << "n의 메모리 크기 - " << sizeof n << "\n"; // 유일하게 sizeof는 괄호 생략 표현이 가능
+	std::cout << "n의 메모리 주소 - " << (void*)std::addressof(n) << "\n";
+	std::cout << "n의 데이터 타입 - " << typeid(n).name() << "\n";
 
 	save("메인.cpp");
 }
