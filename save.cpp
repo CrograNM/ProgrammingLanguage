@@ -23,7 +23,7 @@ void save(std::string_view fileName)
 
 	// 저장했다는 것을 화면에 표시하자.
 	std::cout << fileName << "(" << std::filesystem::file_size(fileName)
-		<< " bytes) 저장하였습니다." << std::endl;
+		<< " bytes) saved" << std::endl;
 
 	// 2. 쓰기 모드로 저장할 파일을 연다.(덧붙이기 모드로)
 	std::ofstream out{ "2025 2학기 프로그래밍언어 강의저장.txt", std::ios::app };
