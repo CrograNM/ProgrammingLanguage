@@ -12,6 +12,7 @@
 // [문제] int값 1000개를 저장할 메모리를 확보하라.
 // 각 int값을 random값으로(니멋대로, 임의의 값으로) 채워라.
 // 가장 큰 값을 찾아 화면에 출력하라.
+// 배열의 몇 번째 원소(element)인가도 같이 출력하라.
 
 std::default_random_engine dre { std::random_device()() };
 std::uniform_int_distribution uid { 0, 9999'9999 };
