@@ -12,14 +12,24 @@
 int main()
 //--------
 {
-	int n[40];
+	int a { 3 };
+	// int a = 3;	// 이 문장도 초기화 문장(Statement)이다.
+	
+	a = 3;			// 대입문(Assignment Statement)
+	a = 33;			// 대입, 할당, 배정 등으로 부른다.
+	a = 333;		// -> "Assignment"
+
+	int n[40] { 1, 2, 3 };	// 요청한 메모리 공간의 값을 초기화 한다
+							// {} -> initializer list
+							// 자료형의 default value로 초기화
+							// fundamental data type은 모든 bit를 0으로 만든다.
 
 	// [실습] 값을 출력해 보세요.
 
-	std::cout << n << '\n';
-
-	for ( int a : n )
-		std::cout << a << '\n';
+	for ( int i = 0; i < 40; ++i )
+	{
+		std::cout << n[i] << " - ";
+	}
 
 	save("메인.cpp");
 }
