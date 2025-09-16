@@ -27,19 +27,22 @@ int main()
 	}
 	
 	// 줄 맞춰 출력한다. 숫자 하나당 10칸
-	for (int val : n) {
-		std::print("{:10}", val);
+	for (int i = 0; i < 1'000; ++i) {
+		std::print("[{:4} - {:10}]", i, n[i]);
 	}
 	std::cout << '\n';
 
 	// 가장 큰 값을 찾아 출력한다.
 	int maxVal = std::numeric_limits<int>::min();
-	for (int val : n) {			// 복잡도 - O(n)
-		if (maxVal < val) {
-			maxVal = val;
+	int where = -1;
+	for (int i = 0; i < 1'000; ++i) {		// 복잡도 - O(n)
+		if (maxVal < n[i]) {
+			maxVal = n[i];
+			where = i;
 		}
 	}
 	std::print("가장 큰 값 - {}\n", maxVal);
+	std::print("{} 번째 원소(인덱스)\n", where);
 
 	save("메인.cpp");
 }
