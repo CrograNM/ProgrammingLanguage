@@ -8,57 +8,24 @@
 #include "save.h"
 
 std::default_random_engine dre { std::random_device()() };
-std::uniform_int_distribution uid { 0, 1'000 };
-const int TestSize = 100;
+std::uniform_int_distribution uid { 1, 6 };
 
-void findValue(int n[]) {
-	int findNum;
-	std::cout << "찾을 값을 입력하세요: ";
-	std::cin >> findNum;
-	bool flag { false }; // 초기화 방식이 아직 안 익숙하네
-	for (int i = 0; i < TestSize; ++i) {
-		if (n[i] == findNum) {
-			flag = true;
-			break;
-		}
-	}
+const int TestSize = 100'0000;
 
-	if (flag) {
-		std::cout << findNum << "는(은) 있습니다.\n";
-	} else {
-		std::cout << findNum << "는(은) 없습니다.\n";
-	}
-}
+// [문제] 주사위를 100만번 던졌다.
+// 각 숫자가 나온 횟수(확률)을 계산해서 화면에 출력하라.
 
 //--------
 int main()
 //--------
 {
-	int n[TestSize];
-
-	for (int& val : n) {	// range-based for, range-for 루프
-		val = uid(dre);
-	}
-
-	std::cout << "전체 값 출력" << '\n';
-	
-	// 줄 맞춰 출력한다. 숫자 하나당 10칸
+	int counts[6] = {}; // 0~5 인덱스
 	for (int i = 0; i < TestSize; ++i) {
-		std::print("[{:8}] ", n[i]);
+		++counts[uid(dre) - 1];
 	}
-	std::cout << '\n';
-
-	// [문제] 사용자가 찾기를 원하는 int 값을 입력받아
-	// 있으면 있다, 없으면 없다 라고 출력하는 코드를 작성하시오.
-
-	while (true) {
-		findValue(n);
-
-		std::cout << "계속 하시겠습니까? (1: 예, 0: 아니오): ";
-		int cont;
-		std::cin >> cont;
-		if (cont == 0) break;
+	for (int i = 0; i < 6; ++i) {
+		std::print("{} : {}번 ({:.2f}%)\n", i + 1, counts[i], counts[i] * 100.0 / TestSize);
 	}
 	
-	//save("메인.cpp");
+	save("메인.cpp");
 }
