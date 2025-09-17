@@ -2720,7 +2720,8 @@ int main()
 
 	//int n[TestSize];	// int[100] 등의 배열은 C++ 언어에서 앞으로는 사용하지 않아야 할 자료구조이다.
 						// 이유는 보안 문제, 메모리 누수 문제, 복사 문제, 크기 변경 불가 문제 등등이 있다.
-	std::array<int, TestSize> n;
+
+	std::array<int, TestSize> n; // int[TestSize]를 완벽하게 대체하면서도 기능이 많다.
 
 	for (int& val : n) {	// range-based for, range-for 루프
 		val = uid(dre);
@@ -2743,6 +2744,88 @@ int main()
 	}
 	std::print("가장 큰 값 - {}\n", maxVal);
 	std::print("{} 번째 원소(인덱스)\n", where);
+
+	save("메인.cpp");
+}
+
+=========================================
+Save Time: 9/17/2025 6:09:05 PM Wednesday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 2025. 3-2. 프로그래밍언어, 9월 15일 월요일 (3주 1일)
+//--------------------------------------------------------------------
+// 자료형과 변수
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <print>
+#include "save.h"
+
+std::default_random_engine dre { std::random_device()() };
+std::uniform_int_distribution uid { 0, 1'000 };
+
+//--------
+int main()
+//--------
+{
+	const int TestSize = 10'000;
+
+	int n[TestSize];
+
+	for (int& val : n) {	// range-based for, range-for 루프
+		val = uid(dre);
+	}
+
+	std::cout << "전체 값 출력" << '\n';
+	
+	// 줄 맞춰 출력한다. 숫자 하나당 10칸
+	for (int i = 0; i < TestSize; ++i) {
+		std::print("[{:8}] ", n[i]);
+	}
+	std::cout << '\n';
+
+	save("메인.cpp");
+}
+
+=========================================
+Save Time: 9/17/2025 6:10:53 PM Wednesday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 2025. 3-2. 프로그래밍언어, 9월 15일 월요일 (3주 1일)
+//--------------------------------------------------------------------
+// 자료형과 변수
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <print>
+#include "save.h"
+
+std::default_random_engine dre { std::random_device()() };
+std::uniform_int_distribution uid { 0, 1'000 };
+
+//--------
+int main()
+//--------
+{
+	const int TestSize = 10'000;
+
+	int n[TestSize];
+
+	for (int& val : n) {	// range-based for, range-for 루프
+		val = uid(dre);
+	}
+
+	std::cout << "전체 값 출력" << '\n';
+	
+	// 줄 맞춰 출력한다. 숫자 하나당 10칸
+	for (int i = 0; i < TestSize; ++i) {
+		std::print("[{:8}] ", n[i]);
+	}
+	std::cout << '\n';
 
 	save("메인.cpp");
 }

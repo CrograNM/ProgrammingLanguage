@@ -7,48 +7,51 @@
 #include <iostream>
 #include <random>
 #include <print>
-#include <array>
 #include "save.h"
 
-// [문제] int값 1000개를 저장할 메모리를 확보하라.
-// 각 int값을 random값으로(니멋대로, 임의의 값으로) 채워라.
-// 가장 큰 값을 찾아 화면에 출력하라.
-// 배열의 몇 번째 원소(element)인가도 같이 출력하라.
-
 std::default_random_engine dre { std::random_device()() };
-std::uniform_int_distribution uid { 0, 9999'9999 };
+std::uniform_int_distribution uid { 0, 1'000 };
 
 //--------
 int main()
 //--------
 {
-	const int TestSize = 1'00;
+	const int TestSize = 100;
 
-	//int n[TestSize];	// int[100] 등의 배열은 C++ 언어에서 앞으로는 사용하지 않아야 할 자료구조이다.
-						// 이유는 보안 문제, 메모리 누수 문제, 복사 문제, 크기 변경 불가 문제 등등이 있다.
-	std::array<int, TestSize> n;
+	int n[TestSize];
 
 	for (int& val : n) {	// range-based for, range-for 루프
 		val = uid(dre);
 	}
+
+	std::cout << "전체 값 출력" << '\n';
 	
 	// 줄 맞춰 출력한다. 숫자 하나당 10칸
 	for (int i = 0; i < TestSize; ++i) {
-		std::print("[{:3}, {:8}] ", i, n[i]);
+		std::print("[{:8}] ", n[i]);
 	}
 	std::cout << '\n';
 
-	// 가장 큰 값을 찾아 출력한다.
-	int maxVal = std::numeric_limits<int>::min();
-	int where = -1;
-	for (int i = 0; i < TestSize; ++i) {		// 복잡도 - O(n)
-		if (maxVal < n[i]) {
-			maxVal = n[i];
-			where = i;
+	// [문제] 사용자가 찾기를 원하는 int 값을 입력받아
+	// 있으면 있다, 없으면 없다 라고 출력하는 코드를 작성하시오.
+
+	int findNum;
+	std::cout << "찾을 값을 입력하세요: ";
+	std::cin >> findNum;
+	bool IsFound = false;
+	for (int i = 0; i < TestSize; ++i) {
+		if (n[i] == findNum) {
+			IsFound = true;
+			break;
 		}
 	}
-	std::print("가장 큰 값 - {}\n", maxVal);
-	std::print("{} 번째 원소(인덱스)\n", where);
+
+	if (IsFound) {
+		std::cout << findNum << "는(은) 있습니다.\n";
+	}
+	else {
+		std::cout << findNum << "는(은) 없습니다.\n";
+	}
 
 	save("메인.cpp");
 }
