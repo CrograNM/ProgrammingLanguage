@@ -19,12 +19,15 @@ const int TestSize = 100'0000;
 int main()
 //--------
 {
-	int counts[6] = {}; // 0~5 인덱스
+	// 교수님의 정답
+
+	int num[6] {};
+
 	for (int i = 0; i < TestSize; ++i) {
-		++counts[uid(dre) - 1];
+		++num[uid(dre) - 1];
 	}
 	for (int i = 0; i < 6; ++i) {
-		std::print("{} : {}번 ({:.2f}%)\n", i + 1, counts[i], counts[i] * 100.0 / TestSize);
+		std::println(" {} : {}번 (확률 - {:.2f}%)", i + 1, num[i], num[i] * 100.0 / TestSize);
 	}
 	
 	save("메인.cpp");

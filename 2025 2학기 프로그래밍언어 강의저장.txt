@@ -3141,3 +3141,103 @@ int main()
 	
 	save("메인.cpp");
 }
+
+=========================================
+Save Time: 9/17/2025 6:59:45 PM Wednesday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 자료형과 변수
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <print>
+#include "save.h"
+
+std::default_random_engine dre { std::random_device()() };
+std::uniform_int_distribution uid { 1, 6 };
+
+const int TestSize = 100'0000;
+
+// [문제] 주사위를 100만번 던졌다.
+// 각 숫자가 나온 횟수(확률)을 계산해서 화면에 출력하라.
+
+//--------
+int main()
+//--------
+{
+	// 1학년용
+
+	int num1 {};
+	int num2 {};
+	int num3 {};
+	int num4 {};
+	int num5 {};
+	int num6 {};
+
+	for (int i = 0; i < TestSize; ++i) {
+		int 주사위값 = uid(dre);
+
+		if (주사위값 == 1)
+			++num1; // ++ ++ ++ num1; 이면 3이 증가.
+		if (주사위값 == 2)
+			++num2;
+		if (주사위값 == 3)
+			++num3;
+		if (주사위값 == 4)
+			++num4;
+		if (주사위값 == 5)
+			++num5;
+		if (주사위값 == 6)
+			++num6;
+	}
+
+	std::print("1 : {}번 ({:.2f}%)\n", num1, num1 * 100.0 / TestSize);
+	std::print("2 : {}번 ({:.2f}%)\n", num2, num2 * 100.0 / TestSize);
+	std::print("3 : {}번 ({:.2f}%)\n", num3, num3 * 100.0 / TestSize);
+	std::print("4 : {}번 ({:.2f}%)\n", num4, num4 * 100.0 / TestSize);
+	std::print("5 : {}번 ({:.2f}%)\n", num5, num5 * 100.0 / TestSize);
+	std::print("6 : {}번 ({:.2f}%)\n", num6, num6 * 100.0 / TestSize);
+	
+	save("메인.cpp");
+}
+
+=========================================
+Save Time: 9/17/2025 7:04:32 PM Wednesday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 자료형과 변수
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <print>
+#include "save.h"
+
+std::default_random_engine dre { std::random_device()() };
+std::uniform_int_distribution uid { 1, 6 };
+
+const int TestSize = 100'0000;
+
+// [문제] 주사위를 100만번 던졌다.
+// 각 숫자가 나온 횟수(확률)을 계산해서 화면에 출력하라.
+
+//--------
+int main()
+//--------
+{
+	// 교수님의 정답
+
+	int num[6] {};
+
+	for (int i = 0; i < TestSize; ++i) {
+		++num[uid(dre) - 1];
+	}
+	for (int i = 0; i < 6; ++i) {
+		std::println(" {} : {}번 (확률 - {:.2f}%)", i + 1, num[i], num[i] * 100.0 / TestSize);
+	}
+	
+	save("메인.cpp");
+}
