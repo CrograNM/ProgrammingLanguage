@@ -17,15 +17,15 @@ void findValue(int n[]) {
 	int findNum;
 	std::cout << "찾을 값을 입력하세요: ";
 	std::cin >> findNum;
-	bool IsFound = false;
+	bool flag { false }; // 초기화 방식이 아직 안 익숙하네
 	for (int i = 0; i < TestSize; ++i) {
 		if (n[i] == findNum) {
-			IsFound = true;
+			flag = true;
 			break;
 		}
 	}
 
-	if (IsFound) {
+	if (flag) {
 		std::cout << findNum << "는(은) 있습니다.\n";
 	} else {
 		std::cout << findNum << "는(은) 없습니다.\n";
