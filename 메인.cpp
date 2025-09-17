@@ -30,5 +30,6 @@ int main()
 		std::println(" {} : {}번 (확률 - {:.2f}%)", i + 1, num[i], num[i] * 100.0 / TestSize);
 	}
 	
+
 	save("메인.cpp");
 }
