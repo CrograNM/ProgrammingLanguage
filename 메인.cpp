@@ -21,21 +21,24 @@ std::uniform_int_distribution uid { 0, 9999'9999 };
 int main()
 //--------
 {
-	int n[1'000];
+	const int TestSize = 1'000;
+
+	int n[TestSize];
+
 	for (int& val : n) {	// range-based for, range-for 루프
 		val = uid(dre);
 	}
 	
 	// 줄 맞춰 출력한다. 숫자 하나당 10칸
-	for (int i = 0; i < 1'000; ++i) {
-		std::print("[{:4} - {:10}]", i, n[i]);
+	for (int i = 0; i < TestSize; ++i) {
+		std::print("[{:3}, {:8}] ", i, n[i]);
 	}
 	std::cout << '\n';
 
 	// 가장 큰 값을 찾아 출력한다.
 	int maxVal = std::numeric_limits<int>::min();
 	int where = -1;
-	for (int i = 0; i < 1'000; ++i) {		// 복잡도 - O(n)
+	for (int i = 0; i < TestSize; ++i) {		// 복잡도 - O(n)
 		if (maxVal < n[i]) {
 			maxVal = n[i];
 			where = i;
