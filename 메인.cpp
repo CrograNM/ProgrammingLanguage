@@ -7,6 +7,7 @@
 #include <iostream>
 #include <random>
 #include <print>
+#include <array>
 #include "save.h"
 
 // [문제] int값 1000개를 저장할 메모리를 확보하라.
@@ -21,9 +22,11 @@ std::uniform_int_distribution uid { 0, 9999'9999 };
 int main()
 //--------
 {
-	const int TestSize = 1'000;
+	const int TestSize = 1'00;
 
-	int n[TestSize];
+	//int n[TestSize];	// int[100] 등의 배열은 C++ 언어에서 앞으로는 사용하지 않아야 할 자료구조이다.
+						// 이유는 보안 문제, 메모리 누수 문제, 복사 문제, 크기 변경 불가 문제 등등이 있다.
+	std::array<int, TestSize> n;
 
 	for (int& val : n) {	// range-based for, range-for 루프
 		val = uid(dre);
