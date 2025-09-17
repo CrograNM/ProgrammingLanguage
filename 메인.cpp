@@ -11,13 +11,31 @@
 
 std::default_random_engine dre { std::random_device()() };
 std::uniform_int_distribution uid { 0, 1'000 };
+const int TestSize = 100;
+
+void findValue(int n[]) {
+	int findNum;
+	std::cout << "찾을 값을 입력하세요: ";
+	std::cin >> findNum;
+	bool IsFound = false;
+	for (int i = 0; i < TestSize; ++i) {
+		if (n[i] == findNum) {
+			IsFound = true;
+			break;
+		}
+	}
+
+	if (IsFound) {
+		std::cout << findNum << "는(은) 있습니다.\n";
+	} else {
+		std::cout << findNum << "는(은) 없습니다.\n";
+	}
+}
 
 //--------
 int main()
 //--------
 {
-	const int TestSize = 100;
-
 	int n[TestSize];
 
 	for (int& val : n) {	// range-based for, range-for 루프
@@ -35,23 +53,14 @@ int main()
 	// [문제] 사용자가 찾기를 원하는 int 값을 입력받아
 	// 있으면 있다, 없으면 없다 라고 출력하는 코드를 작성하시오.
 
-	int findNum;
-	std::cout << "찾을 값을 입력하세요: ";
-	std::cin >> findNum;
-	bool IsFound = false;
-	for (int i = 0; i < TestSize; ++i) {
-		if (n[i] == findNum) {
-			IsFound = true;
-			break;
-		}
-	}
+	while (true) {
+		findValue(n);
 
-	if (IsFound) {
-		std::cout << findNum << "는(은) 있습니다.\n";
+		std::cout << "계속 하시겠습니까? (1: 예, 0: 아니오): ";
+		int cont;
+		std::cin >> cont;
+		if (cont == 0) break;
 	}
-	else {
-		std::cout << findNum << "는(은) 없습니다.\n";
-	}
-
+	
 	save("메인.cpp");
 }
