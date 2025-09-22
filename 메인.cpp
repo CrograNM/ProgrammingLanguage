@@ -6,14 +6,17 @@
 #include "save.h"
 
 // [문제] 전역 메모리의 한계는 어디까지?
-char c[2'147'900'000]; 
+char c[2147483647];		// 2 GB
 
 //--------
 int main()		
 //--------
 {
 	std::cout << "c의 크기 - " << sizeof c << '\n';
-	// 초과했음.
+
+	for (int i = 0; i < 100; ++i) {
+		std::cout << c[i] << '\n';
+	}
 
 	save("메인.cpp");
 }
