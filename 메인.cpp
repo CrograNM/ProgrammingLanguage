@@ -5,29 +5,14 @@
 #include <iostream>
 #include "save.h"
 
-// [문제] 프로그램 실행 중에 STACK을 넘치게 해보세요. -> recursive function call
-
-int cnt { 0 };
-
-int f();
-
-int f()
-{
-	int n[250'000] { 20250922 }; // 1MB
-
-	std::cout << "f 호출 횟수 - " << ++cnt << ", -> " << n[0] << "\n";
-
-	f(); // 재귀호출 - recursive call
-
-	return 20250922;
-}
+// [문제] 전역 메모리의 한계는 어디까지?
+char c[1'000'000]; // 1MB
 
 //--------
 int main()		
 //--------
 {
-	save("메인.cpp");
-	f();
+	std::cout << "c의 크기 - " << sizeof c << '\n';
 
-	//save("메인.cpp");
+	save("메인.cpp");
 }
