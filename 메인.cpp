@@ -5,23 +5,24 @@
 #include <iostream>
 #include "save.h"
 
-// [문제] 지역이란? 
-// -> 전역이 아닌 곳에서 만들어진 모든 변수
-// 
-// 지역변수는 어디에 생기나? -> STACK segment
-// STACK의 전체 크기는? -> OS마다 다름 ( win = 1MB, linux = 8MB 기본 )
+// [문제] 프로그램 실행 중에 STACK을 넘치게 해보세요.
 
-int n { 20250922 };
+void recursive_call()
+{
+    // 종료 조건이 없는 재귀 함수
+    recursive_call();
+}
+
 //--------
-int main(int a1)		// 매개변수 a1 -> 지역변수 
+int main()		
 //--------
 {
-	int n;	
+    save("메인.cpp");
 
-	{					
-		int n { 2 };	
-		std::cout << ::n << std::endl; // 전역변수 n,, 이런 코딩 하지 말것.
-	}					
+    // 스택 오버플로우를 유도하는 코드
+    recursive_call();
+    
+    std::cout << "이 메시지는 보이지 않습니다." << '\n';
 
-	save("메인.cpp");
+	//save("메인.cpp");
 }
