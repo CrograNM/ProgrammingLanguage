@@ -5,11 +5,26 @@
 #include <iostream>
 #include "save.h"
 
+// [문제] 지역이란? 
+// -> 
+// 
+// 지역변수는 어디에 생기나? -> STACK segment
+// STACK의 전체 크기는? -> OS마다 다름 ( win = 1MB, linux = 8MB 기본 )
+
 //--------
-int main()
+int main(int a1)		// 매개변수 a1 -> 지역변수 
 //--------
 {
-	int n; 
+	int n;				// 지역변수 {}, ()
+	for (int i = 0; i < 100000; i++)
+	{
+					// int i -> 지역변수
+		int a2;			// 지역변수
+	}
+
+	{					// 새로운 지역 시작, scope 시작 
+		int n { 2 };	// 지역변수
+	}					// 생명주기 끝 -> 메모리에서 사라짐
 
 	/*
 		ctrl + F5 -> 이름.exe 파일이 폴더에 생성됨 -> 실행(메모리 할당)
@@ -24,6 +39,8 @@ int main()
 		|---------------|
 		| TEXT			| <---------- 프로그램 코드 (ex Main 함수) 저장됨
 		|---------------| High
+
+		- 변수는 STACK, DATA 영역에만 살 수 있다.
 
 	*/
 
