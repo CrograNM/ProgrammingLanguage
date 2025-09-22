@@ -13,9 +13,9 @@ int f();
 
 int f()
 {
-	int a[50'000'000]; // 200MB
+	int n[10'000]; // 40KB
 
-	std::cout << "f 호출 횟수 - " << ++cnt << "\n";
+	std::cout << "f 호출 횟수 - " << ++cnt << ", -> " << n[0] << "\n";
 
 	f(); // 재귀호출 - recursive call
 
