@@ -5,24 +5,29 @@
 #include <iostream>
 #include "save.h"
 
-// [문제] 프로그램 실행 중에 STACK을 넘치게 해보세요.
+// [문제] 프로그램 실행 중에 STACK을 넘치게 해보세요. -> recursive function call
 
-void recursive_call()
+int cnt { 0 };
+
+int f();
+
+int f()
 {
-    // 종료 조건이 없는 재귀 함수
-    recursive_call();
+	int a[50'000'000]; // 200MB
+
+	std::cout << "f 호출 횟수 - " << ++cnt << "\n";
+
+	f(); // 재귀호출 - recursive call
+
+	return 20250922;
 }
 
 //--------
 int main()		
 //--------
 {
-    save("메인.cpp");
-
-    // 스택 오버플로우를 유도하는 코드
-    recursive_call();
-    
-    std::cout << "이 메시지는 보이지 않습니다." << '\n';
+	save("메인.cpp");
+	f();
 
 	//save("메인.cpp");
 }
