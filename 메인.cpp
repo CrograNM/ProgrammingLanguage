@@ -6,6 +6,20 @@
 #include <iostream>
 #include "save.h"
 
+//void change(int& x, int& y)
+//{
+//	int temp = x;
+//	x = y;
+//	y = temp;
+//}
+
+void change(int* x, int* y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
 //--------
 int main()		
 //--------
@@ -13,9 +27,8 @@ int main()
 	int a { 1 }, b { 2 };
 
 	// 여기에서 a와 b의 값을 서로 바꾸는 코딩을 하라. (직접)
-	int temp { a };
-	a = b;
-	b = temp;
+	change(&a, &b);
+
 	std::cout << a << ", " << b << '\n'; // 2, 1이 출력되어야 한다.
 
 	save("메인.cpp");
