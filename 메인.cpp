@@ -26,10 +26,8 @@ int main()
 	{
 		for (int j = 0; j < 10 - i; ++j)
 		{
-			if (a[j] > a[j + 1])
-			{
+			if (a[j] < a[j + 1])
 				change(&a[j], &a[j + 1]);
-			}
 		}
 	}
 	
