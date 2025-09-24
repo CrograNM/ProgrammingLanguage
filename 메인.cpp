@@ -20,21 +20,19 @@ int main()
 	int a[] { 3, 9, 1, 4, 2, 0, 8, 5, 7, 6 };
 
 	// [문제] a의 값을 오름차순으로 정렬하시오
+	// 버블정렬
 
-	for (int i = 0; i < 10 - 1; i++)
+	for (int i = 1; i < 10; ++i)
 	{
-		if (a[i] > a[i + 1]) 
-			change(&a[i], &a[i + 1]);
+		for (int j = 0; j < 10 - i; ++j)
+		{
+			if (a[j] > a[j + 1])
+			{
+				change(&a[j], &a[j + 1]);
+			}
+		}
 	}
-	for (int i = 0; i < 10 - 2; i++) {
-		if (a[i] > a[i + 1])
-			change(&a[i], &a[i + 1]);
-	}
-	for (int i = 0; i < 10 - 3; i++) {
-		if (a[i] > a[i + 1])
-			change(&a[i], &a[i + 1]);
-	}
-
+	
 	for (int num : a) {
 		std::cout << num << ' ';
 	}
