@@ -19,16 +19,26 @@ int main()
 {
 	int a[] { 3, 9, 1, 4, 2, 0, 8, 5, 7, 6 };
 
-	// [문제] a의 값 중에서 가장 큰 수를 오른쪽으로 옮겨라
-	for (int i = 0; i < 9; ++i) {
+	// [문제] a의 값을 오름차순으로 정렬하시오
+
+	for (int i = 0; i < 10 - 1; i++)
+	{
 		if (a[i] > a[i + 1]) 
 			change(&a[i], &a[i + 1]);
-
-		for (int num : a) {
-			std::cout << num << ' ';
-		}
-		std::cout << '\n';
 	}
+	for (int i = 0; i < 10 - 2; i++) {
+		if (a[i] > a[i + 1])
+			change(&a[i], &a[i + 1]);
+	}
+	for (int i = 0; i < 10 - 3; i++) {
+		if (a[i] > a[i + 1])
+			change(&a[i], &a[i + 1]);
+	}
+
+	for (int num : a) {
+		std::cout << num << ' ';
+	}
+	std::cout << '\n';
 
 	save("메인.cpp");
 }
