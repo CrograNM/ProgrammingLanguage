@@ -6,17 +6,29 @@
 #include <iostream>
 #include "save.h"
 
+void change(int* x, int* y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
 
 //--------
 int main()		
 //--------
 {
-	// 포인터 - 주소값을 저장하기 위한 자료형과 변수
-	int a { 1 };
+	int a[] { 3, 9, 1, 4, 2, 0, 8, 5, 7, 6 };
 
-	int* p = &a; // 같은 지역에서 선언된 값을 가리키려고 쓰는 놈이 아니다.				
+	// [문제] a의 값 중에서 가장 큰 수를 오른쪽으로 옮겨라
+	for (int i = 0; i < 9; ++i) {
+		if (a[i] > a[i + 1]) 
+			change(&a[i], &a[i + 1]);
 
-	std::cout << "a의 값: " << a << '\n';
+		for (int num : a) {
+			std::cout << num << ' ';
+		}
+		std::cout << '\n';
+	}
 
 	save("메인.cpp");
 }
