@@ -6,28 +6,21 @@
 #include <iostream>
 #include "save.h"
 
-void change(int*, int*);	// int pointer, pointer to int, 
-							// int형 변수의 주소를 담을 수 있는 
-
-void change(int* a, int* b)
-{
-	int temp { *a }; // * : dereference - 역참조 연산자
-	*a = *b;      
-	*b = temp;    
-}
 
 //--------
 int main()		
 //--------
 {
-	int a { 1 }, b { 2 };
+	// 포인터 - 주소값을 저장하기 위한 자료형과 변수
+	int a { 1 };
 
-	// 여기에서 a와 b의 값을 서로 바꾸는 코딩을 하라. (직접)
-	change(&a, &b); // & : address of 연산자.
+	int* p;
 
-	// 주소를 넘기는 것 말고는 방법이 없다.
+	p = &a;	// & : 주소 연산자
 
-	std::cout << a << ", " << b << '\n'; // 2, 1이 출력되어야 한다.
+	*p = 20250924;	// * : 간접 참조 연산자
+
+	std::cout << "a의 값: " << a << '\n';
 
 	save("메인.cpp");
 }
