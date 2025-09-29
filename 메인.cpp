@@ -7,15 +7,7 @@
 #include <print>
 #include "save.h"
 
-void change(int*, int*); // 선언
 void change(int&, int&); 
-
-void change(int* x, int* y)
-{
-	int temp { *x };
-	*x = *y;
-	*y = temp;
-}
 
 void change(int& x, int& y)
 {
@@ -42,21 +34,20 @@ const int SIZE { 10'000 };
 int main()
 //--------
 {
+	int a[SIZE]; 
+	// contiguous memory	(인접한, 공간의 연속)
+	// continuous			(연속, 시간)
 
-	int a[SIZE];
 	for (int i = 0; i < SIZE; ++i) {
 		a[i] = uid(dre);
 	}
 
 	// [문제] a의 값을 오름차순으로 정렬하시오
-	// 버블정렬
+	// 정렬 전문 코드에 부탁해서 정렬하면 된다.
 
-	for (int i = 0; i < SIZE - 1; ++i) {
-		for (int j = 0; j < SIZE - 1 - i; ++j) {
-			if (a[j] > a[j + 1])
-				change(a[j], a[j + 1]);		// call by reference
-		}
-	}
+	qsort( a, SIZE, sizeof(int), 이렇게);
+	// std::sort();
+	// std::ranges::sort();
 
 	for (int num : a) {
 		std::print("{:8}", num);
