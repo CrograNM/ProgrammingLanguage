@@ -28,15 +28,27 @@ void change(int& x, int& y)
 std::default_random_engine dre { std::random_device()() };
 std::uniform_int_distribution uid { 0, 99999 };
 
-const int SIZE { 10'000 };
+const int SIZE { 100'0000 };
+
+int 이렇게(const void* a, const void* b)
+{
+	int x = (*(int*)a);
+	int y = (*(int*)b);
+
+	if (x < y) 
+		return -1;
+	else if (x > y) 
+		return 1;
+	return 0; // stable한 sort 에 필요
+}
+
+
+int a[SIZE];
 
 //--------
 int main()
 //--------
 {
-	int a[SIZE]; 
-	// contiguous memory	(인접한, 공간의 연속)
-	// continuous			(연속, 시간)
 
 	for (int i = 0; i < SIZE; ++i) {
 		a[i] = uid(dre);
