@@ -35,7 +35,8 @@ int main()
 	qsort(pangram, (sizeof pangram - sizeof(char)) / sizeof(char), 
 		  sizeof(char), 방법);
 
-	std::cout << pangram << '\n';
+	std::cout << std::addressof(pangram) << '\n';
+	std::cout << std::hex << (int)pangram << '\n';
 
 	save("main.cpp");
 }
