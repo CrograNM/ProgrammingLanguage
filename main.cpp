@@ -8,7 +8,6 @@
 #include "save.h"
 
 int LikeThis(const void* a, const void* b);
-
 int LikeThis(const void* a, const void* b)
 {
 	char x = (*(char*)a);
@@ -35,5 +34,7 @@ int main()
 		std::cout << c;
 	std::cout << '\n';
 
-	save("main.cpp");
+	std::cout << "a안녕하세요a" << std::endl;
+
+	//save("main.cpp");
 }
