@@ -19,7 +19,7 @@ int 방법(const void* a, const void* b)
 		return -1;
 	else if (x > y)
 		return 1;
-	return 0; // stable한 sort 에 필요
+	return 0; 
 }
 
 //--------
@@ -30,12 +30,12 @@ int main()
 
 	// [문제] pangram을 오름차순으로 qsort를 사용하여 정렬하고 출력하라.
 
+	std::cout << "pangram 이 차지한 메모리 - " << sizeof pangram << " 바이트\n";
+
 	qsort(pangram, (sizeof pangram - sizeof(char)) / sizeof(char), 
 		  sizeof(char), 방법);
 
-	for (char c : pangram)
-		std::cout << c;
-	std::cout << '\n';
+	std::cout << pangram << '\n';
 
 	save("main.cpp");
 }

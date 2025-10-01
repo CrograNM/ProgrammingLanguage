@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 
 //-------------------------------------------------------------
 // save.cpp - 한 학기 강의를 잘 저장하는 함수
