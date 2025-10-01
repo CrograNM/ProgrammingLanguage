@@ -25,9 +25,23 @@ int main()
 
 	// [문제] pangram을 오름차순으로 qsort를 사용하여 정렬하고 출력하라.
 
-	std::cout << "pangram 이 차지한 메모리 - " << sizeof pangram << " 바이트\n";
-
 	qsort(pangram, sizeof pangram - 1, 1, 방법);
+
+	// generic function : 어떤 타입이든 다 처리할 수 있는 함수
+	// 프로그래밍에서 generic 이란, 타입을 가리지 않고 다 처리할 수 있는 것을 의미
+
+	// C/C++ -> Procedural Programming
+	// C with Classes -> C++의 원래 정의 Object Oriented Programming
+	
+	// C++의 현재 정의
+	// Generic Programming Language			
+	// Functional Programming Language
+	// Meta Programming Language 
+
+	// OOP 와 GP 는 관점이 다르다.
+
+	// qsort는 Generic Programming의 시작점이라고 볼 수 있음.
+	// 자료형에 관심이 없는 함수
 
 	std::cout << pangram << '\n';
 
