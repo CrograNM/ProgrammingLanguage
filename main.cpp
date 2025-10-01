@@ -1,4 +1,4 @@
-//--------------------------------------------------------------------
+﻿//--------------------------------------------------------------------
 // 10. 27 월요일 - 중간시험 
 //--------------------------------------------------------------------
 // C++에서 포인터 대신 사용할 수 있는 레퍼런스(reference)
@@ -7,8 +7,10 @@
 #include <iostream>
 #include "save.h"
 
-int LikeThis(const void* a, const void* b);
-int LikeThis(const void* a, const void* b)
+// <방법> : qsort가 요구하는 형식에 맞는 비교함수
+// 리턴은 반드시 int를 리턴하는 형식으로 약속
+// 인자는 const void* 형식의 포인터 2개를 받도록 약속
+int 방법(const void* a, const void* b) 
 {
 	char x = (*(char*)a);
 	char y = (*(char*)b);
@@ -28,13 +30,12 @@ int main()
 
 	// [문제] pangram을 오름차순으로 qsort를 사용하여 정렬하고 출력하라.
 
-	qsort(pangram, sizeof(pangram)-1, sizeof(char), LikeThis);
+	qsort(pangram, (sizeof pangram - sizeof(char)) / sizeof(char), 
+		  sizeof(char), 방법);
 
 	for (char c : pangram)
 		std::cout << c;
 	std::cout << '\n';
 
-	std::cout << "a안녕하세요a" << std::endl;
-
-	//save("main.cpp");
+	save("main.cpp");
 }
