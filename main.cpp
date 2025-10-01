@@ -12,14 +12,9 @@
 // 인자는 const void* 형식의 포인터 2개를 받도록 약속
 int 방법(const void* a, const void* b) 
 {
-	char x = (*(char*)a);
-	char y = (*(char*)b);
-
-	if (x < y)
-		return -1;
-	else if (x > y)
-		return 1;
-	return 0; 
+	return *(char*)a - *(char*)b; 
+	// 양수, 음수, 0을 리턴하는 형식으로 한줄로 작성 가능
+	// 내림차순이면 a, b 순서를 바꾸면 됨
 }
 
 //--------
@@ -32,11 +27,9 @@ int main()
 
 	std::cout << "pangram 이 차지한 메모리 - " << sizeof pangram << " 바이트\n";
 
-	qsort(pangram, (sizeof pangram - sizeof(char)) / sizeof(char), 
-		  sizeof(char), 방법);
+	qsort(pangram, sizeof pangram - 1, 1, 방법);
 
-	std::cout << std::addressof(pangram) << '\n';
-	std::cout << std::hex << (int)pangram << '\n';
+	std::cout << pangram << '\n';
 
 	save("main.cpp");
 }
