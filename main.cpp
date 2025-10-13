@@ -6,13 +6,10 @@
 
 #include <iostream>
 #include "save.h"
-
 using namespace std;
 
 
-// [문제] 사용자가 원하는 숫자만큼 int를 저장할 메모리를 확보한다.
-// 그 메모리를 1부터 시작하는 정수로 채워라.
-// 메모리의 합계를 화면에 출력하여라.
+// [문제] free-store는 메모리를 얼마나 줄 수 있나요?
 
 //--------
 int main()
@@ -20,33 +17,25 @@ int main()
 {
 	save("main.cpp");
 
-	while (true) {
-		cout << "int 몇 개가 필요한가요? ";
-		unsigned num;
-		cin >> num;
-
-		int* p;
-		p = new int[num];
-
-		for (int i = 0; i < num; i++) {
-			*(p + i) = i + 1;
-			// *(p + sizeof(int) * 0) = 0 + 1;  이 때, *는 '역참조' 연산자
-			// *(p + sizeof(int) * 1) = 1 + 1;
-			// *(p + sizeof(int) * 2) = 2 + 1;
-			// ... 라고 생각하면 됨 (포인터 산술)
-			// 
-			// 아래와 같이 배열 표기법도 가능
-			// p[i] = i + 1;  // syntatic sugar
+	int cnt {};
+	while (true) { 
+		// 메모리 요청
+		// 1 - 성공
+		// 2 - 메모리가 고갈되면 실패 - C++ 에서는 메모리 관리자가 예외를 던진다.
+		
+		try {
+			new char[2'000'000'000];
 		}
+		catch (const std::exception& e) {
+			cout << "표준 예외객체의 크기 - " << sizeof(e) << endl;
+			cout << "메모리 고갈되었음" << endl;
+			cout << e.what() << endl;
 
-		// 합계
-		int sum { 0 };
-		// for (int val : p)  // ERROR : range-based for문 인데, p는 range가 아니고, 단순 포인터 변수임
-		for (int i = 0; i < num; i++) {
-			sum += p[i];  // p[i]는 *(p + sizeof(int) * i) 의 syntatic sugar 이다.
+			//return 20251013;
+			exit(20251013);  // main이 아닌 곳에서 프로그램 종료하려면 사용
 		}
+		cout << ++cnt << " 번 할당 성공" << endl;
 
-		cout << "1부터 " << num << "까지의 합계 = " << sum << '\n';
-		// endl과 '\n'의 차이는 입력 버퍼를 flush하느냐 마느냐의 차이
+		// 위처럼 try-catch는 성능에 영향을 미치므로 속도 중심인 C++에서는 잘 사용하지 않는다.
 	}
 }
