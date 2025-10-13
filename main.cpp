@@ -8,8 +8,12 @@
 #include "save.h"
 using namespace std;
 
+// [문제] 메모리 같은 귀한 자원은 어떤 식으로 사용하나요?
 
-// [문제] free-store는 메모리를 얼마나 줄 수 있나요?
+// 이런 자원은 3단계를 지켜야 한다.
+// 1 - 자원을 획득 (allocation, acquisition)
+// 2 - 자원을 사용 
+// 3 - 자원을 반환
 
 //--------
 int main()
@@ -17,25 +21,13 @@ int main()
 {
 	save("main.cpp");
 
-	int cnt {};
-	while (true) { 
-		// 메모리 요청
-		// 1 - 성공
-		// 2 - 메모리가 고갈되면 실패 - C++ 에서는 메모리 관리자가 예외를 던진다.
-		
-		try {
-			new char[2'000'000'000];
-		}
-		catch (const std::exception& e) {
-			cout << "표준 예외객체의 크기 - " << sizeof(e) << endl;
-			cout << "메모리 고갈되었음" << endl;
-			cout << e.what() << endl;
+	int* p;
+	p = new int[12'345'678];	// 1 - 약 50MB
 
-			//return 20251013;
-			exit(20251013);  // main이 아닌 곳에서 프로그램 종료하려면 사용
-		}
-		cout << ++cnt << " 번 할당 성공" << endl;
-
-		// 위처럼 try-catch는 성능에 영향을 미치므로 속도 중심인 C++에서는 잘 사용하지 않는다.
+								// 2 - 자원 사용
+	for (int i = 0; i < 12'345'678; i++) {
+		cout << p[i] << ' ';
 	}
+
+	delete[] p;					// 3 - 자원 반환
 }
