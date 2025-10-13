@@ -20,10 +20,13 @@ int main()
 //--------
 {
 	cout << "int 몇 개가 필요한가요? ";
-	int num;
+	unsigned num;
 	cin >> num;
 
-	int*p = new int[num];
+	// int[num] -> 프로그램을 실행해야 확정되는 메모리
+	// C++에서는 new 연산자를 사용하여 동적할당을 한다. (free-store allocation)
+
+	int*p = new int[num]; 
 	for (int i = 0; i < num; ++i)
 		p[i] = i + 1;
 	for (int i = 0; i < num; ++i)
