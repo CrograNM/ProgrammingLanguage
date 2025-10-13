@@ -7,7 +7,6 @@
 #include <iostream>
 #include "save.h"
 
-// 이 줄은 시험의 편의를 위한 것이다. 이런 코딩은 절대 하면 안됨.
 using namespace std;
 
 
@@ -20,16 +19,25 @@ int main()
 //--------
 {
 	cout << "int 몇 개가 필요한가요? ";
-	unsigned num; // unsigned : 0과 양수만 저장하는 정수형(int)
+	unsigned num; 
 	cin >> num;
 
-	// int[num] -> 프로그램을 실행해야 확정되는 메모리
-	// C++에서는 new 연산자를 사용하여 동적할당을 한다. (free-store allocation)
+	int* p;
+	p = new int[num]; 
 
-	// [] -> contiguous 한 메모리를 달라고 요청(request)
-	// Memory Manager : 운영체제(OS)로부터 메모리를 빌려서 관리하는 프로그램이고, 링크드 리스트로 관리한다.
+	for (int i = 0; i < num; i++) {
+		*(p + i) = i + 1;
+	}
 
-	new int[num]; // new 연산자는 요청이 성공하면 요청한 '메모리의 시작주소'를 리턴한다.
+	// 합계
+	int sum { 0 };
+	// for (int val : p)  // ERROR : range-based for문 인데, p는 range가 아니고, 단순 포인터 변수임
+	for (int i = 0; i < num; i++) {
+		sum += *(p + i);  // 축적 (accumulation)
+	}
+
+	cout << "1부터 " << num << "까지의 합계 = " << sum << '\n';
+	// endl과 '\n'의 차이는 입력 버퍼를 flush하느냐 마느냐의 차이
 
 	save("main.cpp");
 }
