@@ -18,26 +18,35 @@ using namespace std;
 int main()
 //--------
 {
-	cout << "int 몇 개가 필요한가요? ";
-	unsigned num; 
-	cin >> num;
-
-	int* p;
-	p = new int[num]; 
-
-	for (int i = 0; i < num; i++) {
-		*(p + i) = i + 1;
-	}
-
-	// 합계
-	int sum { 0 };
-	// for (int val : p)  // ERROR : range-based for문 인데, p는 range가 아니고, 단순 포인터 변수임
-	for (int i = 0; i < num; i++) {
-		sum += *(p + i);  // 축적 (accumulation)
-	}
-
-	cout << "1부터 " << num << "까지의 합계 = " << sum << '\n';
-	// endl과 '\n'의 차이는 입력 버퍼를 flush하느냐 마느냐의 차이
-
 	save("main.cpp");
+
+	while (true) {
+		cout << "int 몇 개가 필요한가요? ";
+		unsigned num;
+		cin >> num;
+
+		int* p;
+		p = new int[num];
+
+		for (int i = 0; i < num; i++) {
+			*(p + i) = i + 1;
+			// *(p + sizeof(int) * 0) = 0 + 1;  이 때, *는 '역참조' 연산자
+			// *(p + sizeof(int) * 1) = 1 + 1;
+			// *(p + sizeof(int) * 2) = 2 + 1;
+			// ... 라고 생각하면 됨 (포인터 산술)
+			// 
+			// 아래와 같이 배열 표기법도 가능
+			// p[i] = i + 1;  // syntatic sugar
+		}
+
+		// 합계
+		int sum { 0 };
+		// for (int val : p)  // ERROR : range-based for문 인데, p는 range가 아니고, 단순 포인터 변수임
+		for (int i = 0; i < num; i++) {
+			sum += p[i];  // p[i]는 *(p + sizeof(int) * i) 의 syntatic sugar 이다.
+		}
+
+		cout << "1부터 " << num << "까지의 합계 = " << sum << '\n';
+		// endl과 '\n'의 차이는 입력 버퍼를 flush하느냐 마느냐의 차이
+	}
 }
