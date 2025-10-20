@@ -34,7 +34,7 @@ int main()
 
 	cout << "파일 읽기 시작" << endl;
 	// 한글자씩 읽기 위해서는 다음과 같다.
-	while (in.get(ch)) {
+	while (in >> ch) {
 		if (islower(ch)) {
 			counts[ch - 'a']++;
 		}
