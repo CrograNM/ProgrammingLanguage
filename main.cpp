@@ -29,19 +29,16 @@ int main()
 		return 20251020;
 	}
 
-	int counts[26] {};	// a ~ z
+	unsigned counts[26] {};	// int 키워드 딱히 안붙여도 자동으로 (unsigned) int 배열로 인식
 	char ch;
 
-	cout << "파일 읽기 시작" << endl;
-	// 한글자씩 읽기 위해서는 다음과 같다.
 	while (in >> ch) {
 		if (islower(ch)) {
-			counts[ch - 'a']++;
+			++counts[ch - 'a'];
 		}
 	}
-	cout << "파일 읽기 끝" << endl;
 
 	for (int i = 0; i < 26; ++i) {
-		println ("{:c} - {}", 'a' + i, counts[i]); // :c는 문자 출력 형식 지정자
+		cout << static_cast<char>(i + 'a') << " - " << counts[i] << endl;
 	}
 }
