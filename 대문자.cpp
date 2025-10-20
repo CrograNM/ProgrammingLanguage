@@ -16,7 +16,7 @@ USING NAMESPACE STD;
 INT MAIN()
 //--------
 {
-	SAVE("MAIN.CPP");
+	//SAVE("MAIN.CPP");
 
 	IFSTREAM IN { "MAIN.CPP" };
 	IF (NOT IN) {
