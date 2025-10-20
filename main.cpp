@@ -9,38 +9,25 @@
 #include "save.h"
 using namespace std;
 
-// [문제] 파일 "main.cpp"에
-// 사용자가 입력한 문자가 몇 개나 있는지 알려줘라.
-// 이 과정을 영원히 반복할 수 있게 코딩해라.
-// 예) 입력 - z
-//	   z의 개수 - 1개
+// [문제] 파일 "main.cpp"의 소문자를 대문자로 바꿔서 저장한 파일 "대문자.cpp"를 만들어라.
+// 힌트 : 소문자를 대문자로 만드려면 toupper 함수를 사용하면 된다. (static_cast 필요)
 
 //--------
 int main()
 //--------
 {
 	save("main.cpp");
-	
-	while (true) {
-		cout << "찾으실 문자는? - ";
-		char charToFind;
-		cin >> charToFind;
 
-		ifstream in { "main.cpp" };	// RAII - 지역에서 열어서 자동으로 사라짐.
-		if (not in) {
-			cout << "파일 열기 실패" << endl;
-			return 1;
-		}
+	ifstream in { "main.cpp" };
+	if (not in) {
+		cout << "파일 읽기 실패" << endl;
+		return 1;
+	}
+	ofstream out { "대문자.cpp" };
+	char c;
 
-		char c;
-		unsigned cnt { 0 };
-		while (in >> c) {
-			if (charToFind == c) {
-				++cnt;
-			}
-		}
-		cout << charToFind << "의 개수 - " << cnt << endl;
-
-		//in.close(); // RAII - 지역에서 열어서 자동으로 사라짐. 즉, 안써도 됨.
+	in >> noskipws; // 공백 문자도 읽기 위해 noskipws 설정. (white space를 건너뛰지 않음)
+	while (in >> c) {
+		out << static_cast<char>(toupper(c));
 	}
 }
