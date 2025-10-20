@@ -6,39 +6,42 @@
 
 #include <iostream>
 #include <fstream>
-#include <print>
 #include "save.h"
 using namespace std;
 
-// [문제] 파일 "2025 2학기 프로그래밍언어 강의저장.txt"에 있는 소문자를 세서 다음과 같이 출력하시오.
-// a - 2000	(예시)
-// b - 800
-// 중간 생략
-// z - 50
-// 힌트: 어떤 char가 소문자인지는 islower 함수로 알 수 있다.
+// [문제] 파일 "main.cpp"에
+// 사용자가 입력한 문자가 몇 개나 있는지 알려줘라.
+// 이 과정을 영원히 반복할 수 있게 코딩해라.
+// 예) 입력 - z
+//	   z의 개수 - 1개
 
 //--------
 int main()
 //--------
 {
 	save("main.cpp");
+	
+	char input_ch;	// 사용자 입력 문자
+	char ch;		// 파일 검사용 문자
+	unsigned count {};
 
-	ifstream in { "2025 2학기 프로그래밍언어 강의저장.txt" };
-	if (not in) {
-		print("파일을 열 수 없습니다.");
-		return 20251020;
-	}
+	while (true) {
+		cout << "입력 - ";
+		cin >> input_ch;
 
-	unsigned counts[26] {};	// int 키워드 딱히 안붙여도 자동으로 (unsigned) int 배열로 인식
-	char ch;
-
-	while (in >> ch) {
-		if (islower(ch)) {
-			++counts[ch - 'a'];
+		ifstream in { "main.cpp" };
+		if (not in) {
+			cout << "파일 오픈 실패" << endl;
+			return 20251020;
 		}
-	}
 
-	for (int i = 0; i < 26; ++i) {
-		cout << static_cast<char>(i + 'a') << " - " << counts[i] << endl;
+		count = 0;
+		while (in >> ch) {
+			if (ch == input_ch) {
+				++count;
+			}
+		}
+		in.close();
+		cout << input_ch << "의 개수 - " << count << "개" << endl;
 	}
 }
