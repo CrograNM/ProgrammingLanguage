@@ -21,27 +21,26 @@ int main()
 {
 	save("main.cpp");
 	
-	char input_ch;	// 사용자 입력 문자
-	char ch;		// 파일 검사용 문자
-	unsigned count {};
-
 	while (true) {
-		cout << "입력 - ";
-		cin >> input_ch;
+		cout << "찾으실 문자는? - ";
+		char charToFind;
+		cin >> charToFind;
 
-		ifstream in { "main.cpp" };
+		ifstream in { "main.cpp" };	// RAII - 지역에서 열어서 자동으로 사라짐.
 		if (not in) {
-			cout << "파일 오픈 실패" << endl;
-			return 20251020;
+			cout << "파일 열기 실패" << endl;
+			return 1;
 		}
 
-		count = 0;
-		while (in >> ch) {
-			if (ch == input_ch) {
-				++count;
+		char c;
+		unsigned cnt { 0 };
+		while (in >> c) {
+			if (charToFind == c) {
+				++cnt;
 			}
 		}
-		in.close();
-		cout << input_ch << "의 개수 - " << count << "개" << endl;
+		cout << charToFind << "의 개수 - " << cnt << endl;
+
+		//in.close(); // RAII - 지역에서 열어서 자동으로 사라짐. 즉, 안써도 됨.
 	}
 }
