@@ -21,5 +21,27 @@ using namespace std;
 int main()
 //--------
 {
+	save("main.cpp");
 
+	ifstream in { "2025 2학기 프로그래밍언어 강의저장.txt" };
+	if (not in) {
+		print("파일을 열 수 없습니다.");
+		return 20251020;
+	}
+
+	int counts[26] {};	// a ~ z
+	char ch;
+
+	cout << "파일 읽기 시작" << endl;
+	// 한글자씩 읽기 위해서는 다음과 같다.
+	while (in.get(ch)) {
+		if (islower(ch)) {
+			counts[ch - 'a']++;
+		}
+	}
+	cout << "파일 읽기 끝" << endl;
+
+	for (int i = 0; i < 26; ++i) {
+		println ("{:c} - {}", 'a' + i, counts[i]); // :c는 문자 출력 형식 지정자
+	}
 }
