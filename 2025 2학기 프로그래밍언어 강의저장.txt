@@ -5812,3 +5812,240 @@ int main()
 	save("main.cpp");
 	
 }
+
+=========================================
+Save Time: 10/20/2025 5:35:22 PM Monday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 10. 27 월요일 - 중간시험  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// [문제] 다운받은 "몇개인지 모르는 int에는 정확히 2000만개의 int값이 저장되어 있다.
+// 오름차순 정렬하고 20칸에 맞춰 모든 값을 출력하라		// qsort, print
+
+const int NUM { 2000'0000 };
+int val[NUM];	// 개수를 알려줬으니 고정 크기 배열로 선언
+
+//--------
+int main()
+//--------
+{
+	save("main.cpp");
+
+	ifstream in("몇개인지모르는int");
+	if (not in) {
+		cout << "파일 없음\n" << endl;
+		return 20251020;
+	}
+
+	cout << "파일 읽기 시작" << endl;
+	for (int i = 0; i < NUM; ++i) {
+		in >> val[i];
+	}
+	cout << "파일 읽기 끝" << endl;
+}
+
+=========================================
+Save Time: 10/20/2025 5:37:35 PM Monday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 10. 27 월요일 - 중간시험  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <random>
+#include "save.h"
+
+using namespace std;
+
+default_random_engine dre;
+uniform_int_distribution uid { -10'0000'0000, 10'0000'0000 };
+
+int main()
+{
+	ofstream out { "몇개인지모르는int" };
+	for (int i = 0; i < 2000'0000; ++i) {
+		out << uid(dre) << ' ';
+	}
+	ifstream in { "몇개인지모르는int" };
+	if (!in) {
+		cout << "failed to open file" << endl;
+		return 20251015;
+	}
+	int n, MaxValue { numeric_limits<int>::min() }, cnt { 0 };
+	while (in >> n) {
+		++cnt;
+		if (n > MaxValue) {
+			MaxValue = n;
+		}
+	}
+
+	cout << cnt << endl;
+	cout << MaxValue << endl;
+	save("main.cpp");
+}
+
+=========================================
+Save Time: 10/20/2025 5:37:59 PM Monday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 10. 27 월요일 - 중간시험  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// [문제] 다운받은 "몇개인지 모르는 int에는 정확히 2000만개의 int값이 저장되어 있다.
+// 오름차순 정렬하고 20칸에 맞춰 모든 값을 출력하라		// qsort, print
+
+const int NUM { 2000'0000 };
+int val[NUM];	// 개수를 알려줬으니 고정 크기 배열로 선언
+
+//--------
+int main()
+//--------
+{
+	save("main.cpp");
+
+	ifstream in("몇개인지모르는int");
+	if (not in) {
+		cout << "파일 없음\n" << endl;
+		return 20251020;
+	}
+
+	cout << "파일 읽기 시작" << endl;
+	for (int i = 0; i < NUM; ++i) {
+		in >> val[i];
+	}
+	cout << "파일 읽기 끝" << endl;
+}
+
+=========================================
+Save Time: 10/20/2025 5:42:28 PM Monday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 10. 27 월요일 - 중간시험  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// [문제] 다운받은 "몇개인지 모르는 int에는 정확히 2000만개의 int값이 저장되어 있다.
+// 오름차순 정렬하고 20칸에 맞춰 모든 값을 출력하라		// qsort, print
+
+const int NUM { 2000'0000 };
+int val[NUM];	// 개수를 알려줬으니 고정 크기 배열로 선언
+int 오름차순(const void*, const void*);
+
+//--------
+int main()
+//--------
+{
+	save("main.cpp");
+
+	ifstream in("몇개인지모르는int");
+	if (not in) {
+		cout << "파일 없음\n" << endl;
+		return 20251020;
+	}
+
+	cout << "파일 읽기 시작" << endl;
+	for (int i = 0; i < NUM; ++i) {
+		in >> val[i];
+	}
+	cout << "파일 읽기 끝" << endl;
+
+	cout << "정렬 시작" << endl;
+	qsort(val, NUM, sizeof(int), 오름차순);
+	cout << "정렬 끝" << endl;
+
+	cout << "키를 누르면 정렬 결과를 출력합니다." << endl;
+	char key;
+	cin >> key;
+	for (int num : val) 
+		cout << num << endl;
+}
+
+int 오름차순(const void* a, const void* b)
+{
+	return (*(int*)a - *(int*)b);
+}
+
+=========================================
+Save Time: 10/20/2025 5:44:33 PM Monday
+=========================================
+
+﻿//--------------------------------------------------------------------
+// 10. 27 월요일 - 중간시험  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <print>
+#include "save.h"
+using namespace std;
+
+// [문제] 다운받은 "몇개인지 모르는 int에는 정확히 2000만개의 int값이 저장되어 있다.
+// 오름차순 정렬하고 20칸에 맞춰 모든 값을 출력하라		// qsort, print
+
+const int NUM { 2000'0000 };
+int val[NUM];	// 개수를 알려줬으니 고정 크기 배열로 선언
+int 오름차순(const void*, const void*);
+
+//--------
+int main()
+//--------
+{
+	save("main.cpp");
+
+	ifstream in("몇개인지모르는int");
+	if (not in) {
+		cout << "파일 없음\n" << endl;
+		return 20251020;
+	}
+
+	cout << "파일 읽기 시작" << endl;
+	for (int i = 0; i < NUM; ++i) {
+		in >> val[i];
+	}
+	cout << "파일 읽기 끝" << endl;
+
+	cout << "정렬 시작" << endl;
+	qsort(val, NUM, sizeof(int), 오름차순);
+	cout << "정렬 끝" << endl;
+
+	cout << "키를 누르면 정렬 결과를 출력합니다." << endl;
+	char key;
+	cin >> key;
+	for (int num : val) 
+		std::print("{:20}", num);
+}
+
+int 오름차순(const void* a, const void* b)
+{
+	return (*(int*)a - *(int*)b);
+}
