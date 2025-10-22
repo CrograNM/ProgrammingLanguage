@@ -6696,3 +6696,84 @@ int ì‚¬ì „ì‹ì •ë ¬(const void* a, const void* b)
 		return 1;
 	return 0;
 }
+
+=========================================
+Save Time: 10/22/2025 6:25:17 PM Wednesday
+=========================================
+
+//--------------------------------------------------------------------
+// 10. 27 ¿ù¿äÀÏ - Áß°£½ÃÇè  
+//--------------------------------------------------------------------
+// fstream
+//--------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "save.h"
+using namespace std;
+
+// [¹®Á¦] ÆÄÀÏ "main.cpp" ¿¡ ¸ğµÎ ¸î °³ÀÇ ´Ü¾î°¡ ÀÖ´ÂÁö Ãâ·ÂÇÏ¶ó
+// (´Ü¾î) °ø¹éÀ¸·Î ºĞ¸®µÈ ¹®ÀÚÁıÇÕÀ» ¸»ÇÑ´Ù.
+// ÀÌÁ¦ ½Ç½Ã°£¿¡ ´Ü¾î °³¼ö¸¦ ¼Ã´Ù. 
+// ´Ü¾î¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏ¶ó. (»çÀü½Ä - lexicographical order)
+// Á¤·ÄµÈ ´Ü¾î¸¦ Ãâ·ÂÇÏ¶ó.
+
+int »çÀü½ÄÁ¤·Ä(const void*, const void*);
+
+//--------
+int main()
+//--------
+{
+	save("main.cpp");
+
+	unsigned cnt {};
+	{
+		ifstream in { "main.cpp" };
+		if (not in) {
+			cout << "ÆÄÀÏ ¿­±â ½ÇÆĞ" << endl;
+			return 1;
+		}
+		string str;
+		while (in >> str) {
+			++cnt;
+		}
+	}
+
+	string* words = new string[cnt];
+
+	ifstream in { "main.cpp" };
+	if (not in) {
+		cout << "ÆÄÀÏ ¿­±â ½ÇÆĞ" << endl;
+		return 1;
+	}
+	for (int i = 0; i < cnt; ++i) {
+		in >> words[i];
+	}
+
+	// »çÀü½Ä Á¤·Ä
+	qsort(words,cnt,sizeof(string),»çÀü½ÄÁ¤·Ä);
+
+	for (int i = 0; i < cnt; ++i) {
+		cout << words[i] << endl;
+	}
+
+	delete[] words;
+
+	// A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+	// AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR SS TT UU VV WW XX YY ZZ
+	// AAA BBB CCC DDD EEE FFF GGG HHH III
+	// AAB ACC ABB ADD EEE FFF GGG HHH III BBC BCC
+}
+
+int »çÀü½ÄÁ¤·Ä(const void* a, const void* b)
+{
+	string s1 = *(string*)a; // Çüº¯È¯ (void* -> string*) ÈÄ	¿ªÂüÁ¶·Î string °´Ã¼ ¾ò±â
+	string s2 = *(string*)b; 
+	
+	if (s1 < s2) 
+		return -1;
+	if (s1 > s2) 
+		return 1;
+	return 0;
+}
