@@ -12,6 +12,17 @@ using namespace std;
 
 // [문제] 파일 "main.cpp" 에 모두 몇 개의 단어가 있는지 출력하라
 // (단어) 공백으로 분리된 문자집합을 말한다.
+// 이제 실시간에 단어 개수를 셌다. 
+// 단어를 오름차순으로 정렬하라. (사전식 - lexicographical order)
+// 정렬된 단어를 출력하라.
+
+int 사전식정렬(const void* a, const void* b)
+{
+	const string* pa = (const string*)a;
+	const string* pb = (const string*)b;
+	
+	return pa->compare(*pb);
+}
 
 //--------
 int main()
@@ -19,18 +30,38 @@ int main()
 {
 	save("main.cpp");
 
+	unsigned cnt {};
+	{
+		ifstream in { "main.cpp" };
+		if (not in) {
+			cout << "파일 열기 실패" << endl;
+			return 1;
+		}
+		string str;
+		while (in >> str) {
+			++cnt;
+		}
+	}
+
+	string* words = new string[cnt];
+
 	ifstream in { "main.cpp" };
 	if (not in) {
 		cout << "파일 열기 실패" << endl;
 		return 1;
 	}
-
-	string str;
-	unsigned cnt {};
-
-	while (in >> str) {
-		++cnt;
+	for (int i = 0; i < cnt; ++i) {
+		in >> words[i];
 	}
 
-	cout << "단어 개수: " << cnt << endl;
+	// 사전식 정렬
+	qsort(words,cnt,sizeof(string),사전식정렬);
+
+	for (int i = 0; i < cnt; ++i) {
+		cout << words[i] << endl;
+	}
+
+	// A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+	// AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR SS TT UU VV WW XX YY ZZ
+	// AAA BBB CCC DDD EEE FFF GGG HHH III
 }
