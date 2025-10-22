@@ -16,13 +16,7 @@ using namespace std;
 // 단어를 오름차순으로 정렬하라. (사전식 - lexicographical order)
 // 정렬된 단어를 출력하라.
 
-int 사전식정렬(const void* a, const void* b)
-{
-	const string* pa = (const string*)a;
-	const string* pb = (const string*)b;
-	
-	return pa->compare(*pb);
-}
+int 사전식정렬(const void*, const void*);
 
 //--------
 int main()
@@ -61,7 +55,22 @@ int main()
 		cout << words[i] << endl;
 	}
 
+	delete[] words;
+
 	// A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 	// AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR SS TT UU VV WW XX YY ZZ
 	// AAA BBB CCC DDD EEE FFF GGG HHH III
+	// AAB ACC ABB ADD EEE FFF GGG HHH III BBC BCC
+}
+
+int 사전식정렬(const void* a, const void* b)
+{
+	string s1 = *(string*)a; // 형변환 (void* -> string*) 후	역참조로 string 객체 얻기
+	string s2 = *(string*)b; 
+	
+	if (s1 < s2) 
+		return -1;
+	if (s1 > s2) 
+		return 1;
+	return 0;
 }
