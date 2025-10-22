@@ -24,12 +24,13 @@ int main()
 		cout << "파일 열기 실패" << endl;
 		return 1;
 	}
-	string word;
-	unsigned counts {};
 
-	while (in >> word) {
-		++counts;
+	string str;
+	unsigned cnt {};
+
+	while (in >> str) {
+		++cnt;
 	}
 
-	cout << "단어 개수: " << counts << endl;
+	cout << "단어 개수: " << cnt << endl;
 }
