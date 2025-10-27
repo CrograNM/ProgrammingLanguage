@@ -5,25 +5,40 @@
 //--------------------------------------------------------------------
 
 #include <iostream>
-#include "save.h"
+//#include "save.h"
 using namespace std;
 
 const string FILE_NAME = "main.cpp";
+
+
 
 //--------
 int main()
 //--------
 {
-	save(FILE_NAME);
-
-	struct 인트2개 {
+	struct A {
 		int a;
-		int b;
+		double b;
+		char c;
 	};
 	
-	인트2개 a;
+	const int C = 10;
+	A B[C];
+	// (1 - 1) 얼마만큼의 메모리가 사용되고 있는가 출력하는 코드를 작성하라.
 	
-	cout << "sizeof(인트2개): " << sizeof(인트2개) << endl;
-	cout << "sizeof(a): " << sizeof(a) << endl;
-	cout << "typeid(a).name(): " << typeid(a).name() << endl;
+	cout << "Size of A: " << sizeof(A) << " bytes" << endl;
+
+	// (1 - 2) 메모리 주소를 출력하는 코드를 작성하라.(출력코드)
+
+	for (int i = 0; i < C; ++i) {
+		cout << "Address of B[" << i << "]: " << &B[i] << endl;
+	}
+
+	
+	// (1 - 3) 어느 영역에 생성되는 메모리인가 설명하라.
+
+	// A 구조체 배열 B는 main 함수 내에서 선언되었으므로 스택 영역에 생성됩니다.
+	// 만약 전역에서 선언되었다면 데이터 영역에 생성되었을 것입니다.
+
+
 }
