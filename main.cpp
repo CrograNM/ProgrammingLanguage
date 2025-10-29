@@ -13,9 +13,9 @@ using namespace std;
 struct Dog { 
 	string name;
 
-	void show() const // 중요 : const 멤버 함수 // const, volatile ==> cv qualifiers : 자격을 부여한다
+	void show() const
 	{
-		cout << name << " 입니다." << endl;
+		cout << name << " 입니다" << endl;
 	}
 };
 
@@ -26,6 +26,11 @@ int main()
 	save("main.cpp");
 
 	int n { 100 };
-	Dog dog { "댕댕이" };
-	dog.show();
+	Dog dog[3] { "코코", "보리", "콩이" };
+
+	// 출력
+	for (Dog d : dog)
+	{
+		d.show();
+	}
 }
