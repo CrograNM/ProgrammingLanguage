@@ -37,14 +37,14 @@ private: // access modifier - class의 default (private)
 	string name;
 };
 
+Dog dog = { "콩이"s };
+
 //--------
 int main()
 //--------
 {
 	save("main.cpp");
 	cout << "------------ 메인 시작 ------------" << endl;
-	{
-		Dog dog = { "콩이"s };
-	}
+
 	cout << "------------ 메인 끝 -------------" << endl;
 }
