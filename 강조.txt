@@ -36,3 +36,7 @@ this->member_variable
 ***절대 쓰지 말것***
 
 ======================================================================
+<private>
+class Dog { 
+// private:  ---> 이거 숨어있음. access modifier
+};

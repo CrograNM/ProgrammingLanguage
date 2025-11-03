@@ -5,17 +5,19 @@
 // -------------------------------------------------------------------
 
 #include <iostream>
-#include <fstream>
+#include <string>
 #include "save.h"
 
 using namespace std;
 
-struct Dog { 
-	string name;
+class Dog { 
+private:	//---> 이거 숨어있음. access modifier - class의 default 접근 지정자
+public:		
+protected:
 
-	void show() const
-	{
-		cout << name << " 입니다" << endl;
+public : 
+	void bark() { 
+		cout << "멍멍!" << endl; 
 	}
 };
 
@@ -23,14 +25,7 @@ struct Dog {
 int main()
 //--------
 {
+	Dog dog;
+	dog.bark();
 	save("main.cpp");
-
-	int n { 100 };
-	Dog dog[3] { "코코", "보리", "콩이" };
-
-	// 출력
-	for (Dog d : dog)
-	{
-		d.show();
-	}
 }
