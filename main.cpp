@@ -14,6 +14,7 @@ class Dog {
 public:
 	Dog() { // special function - default constructor -> default ctor (creator 줄여서)
 		name = "디폴트";
+		cout << "생성자(default) 호출되었다. " << endl;
 	}
 	// Dog(string) 생성자
 	Dog(string this_name) : name { this_name } {
@@ -37,7 +38,7 @@ private: // access modifier - class의 default (private)
 	string name;
 };
 
-Dog dog = { "콩이"s };
+// Dog* p { new Dog {"코코"s} }; -> 소멸자 호출 안됨 -> 메모리 누수
 
 //--------
 int main()
@@ -45,6 +46,6 @@ int main()
 {
 	save("main.cpp");
 	cout << "------------ 메인 시작 ------------" << endl;
-
+	new Dog { "코코"s }; // --> 역시 소멸자 호출 안됨 -> 메모리 누수
 	cout << "------------ 메인 끝 -------------" << endl;
 }
