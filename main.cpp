@@ -8,6 +8,10 @@
 #include <string>
 #include "save.h"
 
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
+
 using namespace std;
 
 class Dog {
@@ -15,10 +19,13 @@ public:
 	Dog() { // special function - default constructor -> default ctor (creator 줄여서)
 		name = "디폴트";
 		cout << "생성자(default) 호출되었다. " << endl;
+		PlaySound(L"개소리.wav", NULL, SND_FILENAME | SND_SYNC);
 	}
+
 	// Dog(string) 생성자
 	Dog(string this_name) : name { this_name } {
 		cout << "생성자(string) 호출되었다. " << endl;
+		PlaySound(L"개소리.wav", NULL, SND_FILENAME | SND_SYNC);
 	}
 
 	~Dog() { // special function - destructor
@@ -31,6 +38,7 @@ public:
 		
 	void bark() {
 		cout << name << " 입니다멍" << endl;
+		PlaySound(L"개소리.wav", NULL, SND_FILENAME | SND_SYNC);
 	}
 
 // 캡슐화, 추상화, 정보은닉 
@@ -38,17 +46,12 @@ private: // access modifier - class의 default (private)
 	string name;
 };
 
-// Dog* p { new Dog {"코코"s} }; -> 소멸자 호출 안됨 -> 메모리 누수
-
 //--------
 int main()
 //--------
 {
 	save("main.cpp");
 	cout << "------------ 메인 시작 ------------" << endl;
-	unique_ptr<Dog[]> p{ // 이름을 지정하지 않으면 자동 소멸 - RAII를 구현하는 객체
-		new Dog[3] { "코코"s }  
-	}; 
+	unique_ptr<Dog[]> p{ new Dog[3] { "코코"s } }; 
 	cout << "------------ 메인 끝 -------------" << endl;
 }
-// 이름쓰면 메인 이후에 소멸자 호출됨
