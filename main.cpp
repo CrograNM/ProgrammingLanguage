@@ -10,22 +10,32 @@
 
 using namespace std;
 
-class Dog { 
-private:	//---> 이거 숨어있음. access modifier - class의 default 접근 지정자
-public:		
-protected:
-
-public : 
-	void bark() { 
-		cout << "멍멍!" << endl; 
+class Dog {
+public:
+	Dog()
+	{ // special function - default constructor -> default ctor (creator 줄여서)
+		name = "디폴트";
 	}
+
+	// Dog(string) 생성자
+	Dog(string this_name) : name { this_name } {
+	}
+	
+	void bark() {
+		cout << name << " 입니다멍" << endl;
+	}
+
+// 캡슐화, 추상화, 정보은닉 
+private: // access modifier - class의 default (private)
+	string name;
 };
 
 //--------
 int main()
 //--------
 {
-	Dog dog;
-	dog.bark();
+	Dog dogs[3] = { string{"코코"}, "보리"s, "콩이"s }; // s: string literal, 연산자 오버로딩
+	for ( Dog dog : dogs )
+		dog.bark();
 	save("main.cpp");
 }
