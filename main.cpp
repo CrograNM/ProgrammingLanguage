@@ -16,6 +16,6 @@ int main()
 //--------
 {
 	STRING s[] { "22" };
-	new STRING { "333" };
+	unique_ptr<STRING> p { new STRING { "333" } };
 	save("main.cpp");
 }
