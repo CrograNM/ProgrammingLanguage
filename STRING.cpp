@@ -6,11 +6,23 @@
 //-------------------------------------------------------------
 
 #include <iostream>
+#include <print>
 #include "STRING.h"
 
+unsigned STRING::gid { 0 };
+
+STRING::STRING() 
+	: id { ++gid }
+{ 
+	std::println("[{:5}] 생성    , 내주소:{}", 
+				 id, (void*)this);
+}
+
 STRING::STRING(const char* name)
-	: len { (unsigned)strlen(name) }
+	: id { ++gid }
 {
+	len = (unsigned)strlen(name);
+
 	p = new char[len];
 	// 저장은 memcpy로 한다
 	memcpy(p, name, len);	// DMA - 초고속 전송 (Direct Memory Access)

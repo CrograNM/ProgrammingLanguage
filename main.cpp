@@ -10,6 +10,7 @@
 #include "STRING.h"
 using namespace std;
 
+STRING s;
 
 //--------
 int main()
@@ -17,9 +18,5 @@ int main()
 {
 	save("main.cpp");
 
-	STRING s { "2025년 11월 5일 STRING 클래스 파일을 새로 만들었다" };
-
-	cout << "글자 수 - " << s.length() << endl;
-	cout << "글 내용 - ";
-	s.show();
+	STRING s[10]; // trivial - 컴파일러가 이 프로그램은 이미 생성자가 있다고 간주해서 기본 생성자를 호출
 }

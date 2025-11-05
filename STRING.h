@@ -13,12 +13,15 @@
 // 6. STRING& operator=( STRING&& )			- move assignment operator
 // 
 // 2025. 11. 5
+// - 관찰메시지를 작성하였다.
 //-------------------------------------------------------------
 #pragma once
 
 class STRING {
 public:
 	// 스페셜 함수들 자리
+	STRING();								// 1. default constructor
+
 
 	STRING(const char* name);
 
@@ -31,4 +34,7 @@ public:
 private:
 	unsigned len {};
 	char* p {};
+
+	unsigned id;			// 객체에 붙이는 고유번호
+	static unsigned gid;	// 클래스에서 선언한 static 멤버
 };
