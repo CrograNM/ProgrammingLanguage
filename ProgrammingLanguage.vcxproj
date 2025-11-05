@@ -128,9 +128,11 @@
   <ItemGroup>
     <ClCompile Include="save.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="STRING.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="save.h" />
+    <ClInclude Include="STRING.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="2025 2학기 프로그래밍언어 강의저장.txt" />
