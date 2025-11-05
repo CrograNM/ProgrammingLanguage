@@ -48,3 +48,16 @@ private:
 	int x; 
 	int y; 
 };
+
+======================================================================
+<스페셜 함수>
+클래스에는 6가지 스페셜함수가 있다.
+1. STRING()									- default constructor		(기본 생성자)
+2. ~STRING()								- destructor				(소멸자)
+
+3. STRING( const STRING& )					- copy constructor			(복사 생성자)
+4. STRING& operator=( const STRING& )		- copy assignment operator	(복사 대입 연산자) // 복사 생성자와 짝이되는 녀석이다.
+
+// r-value referece (임시객체 참조자) : && 
+5. STRING( STRING&& )						- move constructor			(이동 생성자)
+6. STRING& operator=( STRING&& )			- move assignment operator	(이동 대입 연산자) // 이동 생성자와 짝이되는 녀석이다.

@@ -20,5 +20,6 @@ int main()
 	STRING s { "2025년 11월 5일 STRING 클래스 파일을 새로 만들었다" };
 
 	cout << "글자 수 - " << s.length() << endl;
-	// cout << "글 내용 - " << s << endl;
+	cout << "글 내용 - ";
+	s.show();
 }

@@ -20,3 +20,10 @@ unsigned STRING::length()
 {
 	return len;
 }
+
+void STRING::show()
+{
+	for (int i=0; i < len; ++i)
+		std::cout << p[i];
+	std::cout << std::endl;
+}
