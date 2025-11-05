@@ -20,8 +20,8 @@
 class STRING {
 public:
 	// 스페셜 함수들 자리
-	STRING();								// 1. default constructor
-
+	STRING();								// 1. 디폴트 생성자
+	~STRING();								// 2. 소멸자 ( ~ : tilde )
 
 	STRING(const char* name);
 

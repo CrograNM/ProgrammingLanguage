@@ -10,13 +10,12 @@
 #include "STRING.h"
 using namespace std;
 
-STRING s;
-
+STRING s { "1" };
 //--------
 int main()
 //--------
 {
+	STRING s[] { "22" };
+	new STRING { "333" };
 	save("main.cpp");
-
-	STRING s[10]; // trivial - 컴파일러가 이 프로그램은 이미 생성자가 있다고 간주해서 기본 생성자를 호출
 }

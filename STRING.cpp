@@ -14,8 +14,14 @@ unsigned STRING::gid { 0 };
 STRING::STRING() 
 	: id { ++gid }
 { 
-	std::println("[{:5}] 생성    , 내주소:{}", 
-				 id, (void*)this);
+	std::println("[{:5}] 생성    , 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+				id, (void*)this, len, (void*)p);
+}
+
+STRING::~STRING() 
+{ 
+	std::println("[{:5}] 소멸    , 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+				 id, (void*)this, len, (void*)p);
 }
 
 STRING::STRING(const char* name)
@@ -26,6 +32,9 @@ STRING::STRING(const char* name)
 	p = new char[len];
 	// 저장은 memcpy로 한다
 	memcpy(p, name, len);	// DMA - 초고속 전송 (Direct Memory Access)
+
+	std::println("[{:5}] 생성(*) , 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+				 id, (void*)this, len, (void*)p);
 }
 
 unsigned STRING::length()
