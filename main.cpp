@@ -10,12 +10,11 @@
 #include "STRING.h"
 using namespace std;
 
-STRING s { "1" };
 //--------
 int main()
 //--------
 {
-	STRING s[] { "22" };
-	unique_ptr<STRING> p { new STRING { "333" } };
+	STRING s { "2025. 11. 10" };
+
 	save("main.cpp");
 }
