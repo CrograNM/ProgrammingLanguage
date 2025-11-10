@@ -16,8 +16,9 @@ int main()
 {
 	STRING s[] { "1", "22", "333" };
 
-	for ( STRING& str : s )
-		str.show();
-
-	//save("main.cpp");
+	for (STRING& str : s)		// 이렇게 하면 복사생성자가 호출되어 임시객체가 만들어짐.
+		str.show();				// Range-based for를 쓸 때는 레퍼런스(&)를 붙여주어 복사생성자가 호출되지 않게 하는 것이 좋다.
+								// for (STRING& str : s)
+	
+	save("main.cpp");
 }
