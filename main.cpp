@@ -17,7 +17,7 @@ int main()
 	STRING s1 { "2025년" };
 	STRING s2 { "11월 10일" };
 
-	s2 = s1;	
+	s1 = s1;	// s1.operator=(s1); ---> 함수 내에서 자기 자신 할당을 방지하기
 
 	s1.show();
 	s2.show();

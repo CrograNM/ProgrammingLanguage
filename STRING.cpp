@@ -56,9 +56,13 @@ STRING::STRING(const STRING& other)
 // 2025. 11. 10 복사할당연산자
 STRING& STRING::operator=(const STRING& other)
 {
+	if (this == &other)	// 자기 자신 할당 방지
+		return *this;
+
 	delete[] p;
 
 	len = other.len;
+
 	p = new char[len];
 	memcpy(p, other.p, len);
 
