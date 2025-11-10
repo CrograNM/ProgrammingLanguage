@@ -20,10 +20,11 @@ STRING::STRING()
 
 STRING::~STRING() 
 { 
-	// delete[] p;
-
 	std::println("[{:5}] 소멸    , 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
 				 id, (void*)this, len, (void*)p);
+
+	// 객체가 소멸되기 전에 정리할 것이 있다면 여기서...
+	delete[] p;
 }
 
 STRING::STRING(const char* name)
