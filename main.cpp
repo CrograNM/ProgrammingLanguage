@@ -14,6 +14,10 @@ using namespace std;
 int main()
 //--------
 {
+	STRING s1 { "2025년" };
+	STRING s2 = s1;
+	s1.show();
+	s2.show();
 
 	save("main.cpp");
 }
