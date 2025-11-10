@@ -14,13 +14,10 @@ using namespace std;
 int main()
 //--------
 {
-	STRING s1 { "2025년" };
-	STRING s2 { "11월 10일" };
+	STRING s[] { "1", "22", "333" };
 
-	s1 = s1;	// s1.operator=(s1); ---> 함수 내에서 자기 자신 할당을 방지하기
+	for ( STRING& str : s )
+		str.show();
 
-	s1.show();
-	s2.show();
-
-	save("main.cpp");
+	//save("main.cpp");
 }
