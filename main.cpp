@@ -20,8 +20,5 @@ int main()
 	s1.show();
 	s2.show();
 
-	delete& s2;
-	s1.show();					// 자동으로 채워진 복사생성자는 s2가 소멸되면서 p를 반환 -> s1도 문제가 생긴다.
-
 	save("main.cpp");
 }
