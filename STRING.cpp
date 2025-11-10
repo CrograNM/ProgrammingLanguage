@@ -77,7 +77,7 @@ unsigned STRING::length()
 	return len;
 }
 
-void STRING::show()
+void STRING::show() const
 {
 	for (int i=0; i < len; ++i)
 		std::cout << p[i];
