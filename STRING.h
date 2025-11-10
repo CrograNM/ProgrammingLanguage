@@ -25,6 +25,9 @@ public:
 
 	STRING(const char* name);
 
+	STRING(const STRING&);					// 3. 복사생성자		- 2025. 11. 10
+	STRING& operator=(const STRING&);		// 4. 복사할당연산자	- 2025. 11. 10
+
 	// 연산자 오버로딩 함수들
 	
 	// 인터페이스 함수들
