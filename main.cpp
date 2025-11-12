@@ -20,7 +20,7 @@ int main()
 
 	STRING s1 { "2025년 11월 12일" };
 	STRING s2 { " - 내일은 수능시험일" };
-	STRING s3 = s1 + s2;
+	STRING s3 = s1 + s2;		// RVO, Return Value Optimization (컴파일러 최적화 기법)
 	s3.show();
 
 	save("main.cpp");

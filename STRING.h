@@ -29,7 +29,7 @@ public:
 	STRING& operator=(const STRING&);		// 4. 복사할당연산자	- 2025. 11. 10
 
 	// 연산자 오버로딩 함수들
-	STRING operator+( STRING rhs );
+	STRING operator+( const STRING& rhs );
 	
 	// 인터페이스 함수들
 	unsigned length() const;			// 2025. 11. 12 const 일관성

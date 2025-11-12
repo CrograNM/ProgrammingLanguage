@@ -83,7 +83,7 @@ STRING& STRING::operator=(const STRING& other)
 
 // 연산자 오버로딩 함수들
 // 2025. 11. 12
-STRING STRING::operator+(STRING rhs)
+STRING STRING::operator+( const STRING& rhs )
 {
 	STRING temp;
 	temp.len = len + rhs.len;
