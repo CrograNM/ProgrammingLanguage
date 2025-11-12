@@ -10,15 +10,22 @@
 #include "STRING.h"
 using namespace std;
 
+int 이렇게(const void* a, const void* b)
+{
+	return (*(STRING*)a).length() - (*(STRING*)b).length();
+}
+
 //--------
 int main()
 //--------
 {
 	STRING s[] { "333", "1", "55555", "22", "4444" };
 
+	// [문제] s를 길이기준 오름 차순으로 정렬하라
+	qsort( s, 5, sizeof(STRING), 이렇게 );
+
 	for (const STRING& str : s)				
 		str.show();
-	
 
-	save("main.cpp");
+	//save("main.cpp");
 }
