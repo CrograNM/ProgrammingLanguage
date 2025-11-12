@@ -31,7 +31,7 @@ public:
 	// 연산자 오버로딩 함수들
 	
 	// 인터페이스 함수들
-	unsigned length();
+	unsigned length() const;			// 2025. 11. 12 const 일관성
 	void show() const;					// 2025. 11. 10 const 일관성 (이 함수는 읽기만 할거야, 안심해 라고 약속하는 것)
 
 private:
