@@ -81,6 +81,25 @@ STRING& STRING::operator=(const STRING& other)
 	return *this;
 }
 
+// 연산자 오버로딩 함수들
+// 2025. 11. 12
+STRING STRING::operator+(STRING rhs)
+{
+	STRING temp;
+	temp.len = len + rhs.len;
+
+	// 메모리 할당
+	temp.p = new char[temp.len];
+
+	// 메모리에 내 글자를 복사
+	memcpy(temp.p, p, len);
+
+	// 이어서 메모리에 rhs 글자를 복사
+	memcpy(temp.p + len, rhs.p, rhs.len);
+
+	return temp;
+}
+
 unsigned STRING::length() const
 {
 	return len;
