@@ -16,12 +16,10 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 int main()
 //--------
 {
-	관찰 = true;
-
-	STRING s1 { "2025년 11월 12일" };
-	STRING s2 { " - 내일은 수능시험일" };
-	STRING s3 = s1 + s2;		// RVO, Return Value Optimization (컴파일러 최적화 기법)
-	s3.show();
+	STRING s;
+	s = "2025년 11월 17일"; // + STRING{ " - 바람 불어 춥다" };
+	
+	s.show();
 
 	save("main.cpp");
 }
