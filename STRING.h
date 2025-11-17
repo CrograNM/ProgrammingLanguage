@@ -43,5 +43,6 @@ private:
 	static unsigned gid;	// 클래스에서 선언한 static 멤버
 
 	// 클래스의 전역 연산자 오버로딩 함수는 friend로 선언한다.
-	friend STRING operator+(const char*, const STRING&);		// 2025. 11. 17
+	friend STRING operator+(const char*, const STRING&);				// 2025. 11. 17
+	friend std::ostream& operator<<(std::ostream&, const STRING&);		// 2025. 11. 17
 };

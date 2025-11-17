@@ -12,11 +12,14 @@ using namespace std;
 
 extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 
+
 //--------
 int main()
 //--------
 {
-	cout << 1 << 2 << 3 << endl;
+	STRING s { "2025년 11월 17일" };
+
+	cout << s << endl;
 
 	save("main.cpp");
 }

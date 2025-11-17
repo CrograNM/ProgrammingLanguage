@@ -126,3 +126,10 @@ STRING operator+(const char* str, const STRING& rhs)
 	memcpy(temp.p + str_len, rhs.p, rhs.len);	   	// temp 메모리에 rhs 이어 붙임
 	return temp;
 }
+std::ostream& operator<<(std::ostream& os, const STRING& rhs)
+{
+	for (int i = 0; i < rhs.len; ++i)
+		os << rhs.p[i];
+	
+	return os;
+}
