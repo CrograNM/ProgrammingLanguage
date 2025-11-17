@@ -16,8 +16,10 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 int main()
 //--------
 {
+	관찰 = true;
+
 	STRING s;
-	s = "2025년 11월 17일"; // + STRING{ " - 바람 불어 춥다" };
+	s = "2025년 11월 17일" + STRING{ " - 바람불어춥다" };
 	
 	s.show();
 

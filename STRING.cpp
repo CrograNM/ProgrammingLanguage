@@ -4,6 +4,7 @@
 // 
 // 2025. 11. 5
 // 2025. 11. 12 필요할 때만 관찰메시지를 출력한다.
+// 2025. 11. 17 friend 연산자 함수 추가
 //-------------------------------------------------------------
 
 #include <iostream>
@@ -100,6 +101,7 @@ STRING STRING::operator+( const STRING& rhs )
 	return temp;
 }
 
+
 unsigned STRING::length() const
 {
 	return len;
@@ -110,4 +112,17 @@ void STRING::show() const
 	for (int i=0; i < len; ++i)
 		std::cout << p[i];
 	std::cout << std::endl;
+}
+
+// 클래스의 전역 연산자 오버로딩 함수는 friend로 선언한다. (선언할 때만 friend)
+// 2025. 11. 17
+STRING operator+(const char* str, const STRING& rhs)
+{
+	STRING temp;
+	unsigned str_len = (unsigned)strlen(str);
+	temp.len = str_len + rhs.len;					// 인자들의 길이를 합하여 temp의 길이 계산
+	temp.p = new char[temp.len];					// temp 메모리를 길이만큼 확보
+	memcpy(temp.p, str, str_len);					// temp 메모리에 왼쪽인자 복사
+	memcpy(temp.p + str_len, rhs.p, rhs.len);	   	// temp 메모리에 rhs 이어 붙임
+	return temp;
 }
