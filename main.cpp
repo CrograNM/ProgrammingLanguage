@@ -31,6 +31,15 @@ private :
 		os << rhs.num;
 		return os;
 	}
+	friend INT operator++(INT& lhs) { // 전위증가
+		++lhs.num;
+		return lhs;
+	}
+	friend INT operator++(INT& lhs, int) { // 후위증가
+		INT temp = lhs;
+		lhs.num++;
+		return temp;
+	}
 };
 
 //--------
@@ -38,7 +47,7 @@ int main()
 //--------
 {
 	INT a = 100;
-	INT b = a;
+	INT b = a++;
 	cout << b << endl;
 	
 	save("main.cpp");
