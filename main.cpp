@@ -14,20 +14,21 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 
 // [문제] class INT를 코딩하여 main()이 의도대로 실행되게 하라.
 
+// Zero Overhead
 class INT { 
 public:
-	INT(int num) : value(num) { }
-	INT& operator=(const INT& rhs) {
-		if (this == &rhs)	return *this;
-		value = rhs.value;
-		return *this;
-	}
+	INT(int num) : num { num } { }
+
+	// INT(const INT&) = default;				// 이런 식으로 할 수도 있지만, 쓸 이유도 전혀 없음
+	// INT& operator=(const INT&) = default;	// 컴파일러가 자동으로 만든다
+
+	// Single-ton 디자인 패턴은 만들지 말고, 전역으로 만드는게 훨씬 낫다
 
 private :
-	int value { 0 };
+	int num;
 
 	friend ostream& operator<<(ostream& os, const INT& rhs) {
-		os << rhs.value;
+		os << rhs.num;
 		return os;
 	}
 };
