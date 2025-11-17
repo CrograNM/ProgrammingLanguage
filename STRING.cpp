@@ -44,7 +44,7 @@ STRING::STRING(const char* name)
 	memcpy(p, name, len);	// DMA - 초고속 전송 (Direct Memory Access)
 
 	if (관찰)
-		std::println("[{:5}] 생성(*), 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+		std::println("[{:5}] 생성(*) , 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
 				 id, (void*)this, len, (void*)p);
 }
 
