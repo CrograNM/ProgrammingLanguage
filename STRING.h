@@ -30,7 +30,8 @@ public:
 
 	// 연산자 오버로딩 함수들
 	STRING operator+( const STRING& rhs );	// 2025. 11. 12
-	char& operator[](unsigned);				// 2025. 11. 19 - subscript operator
+	char operator[](int) const;
+	char& operator[](int);				// 2025. 11. 19 - subscript operator
 	
 	// 인터페이스 함수들
 	unsigned length() const;			// 2025. 11. 12 const 일관성

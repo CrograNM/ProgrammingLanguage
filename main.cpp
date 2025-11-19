@@ -21,7 +21,8 @@ int main()
 	// [문제] s의 글자 중에서 숫자를 "*"로 바꿔라.
 	for (int i = 0; i < s.length(); ++i) {
 		if (isdigit(s[i])) {
-			s[i] = '*';
+			s[i] = '*';			// lvalue - location value 
+								// value - category
 		}
 	}
 

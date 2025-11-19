@@ -101,7 +101,11 @@ STRING STRING::operator+( const STRING& rhs )
 	return temp;
 }
 // 2025. 11. 19 - subscript operator
-char& STRING::operator[]( const unsigned idx) 
+char STRING::operator[]( int idx ) const
+{
+	return p[idx];
+}
+char& STRING::operator[]( int idx ) 
 { 
 	return p[idx];
 }
