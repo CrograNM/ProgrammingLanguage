@@ -18,8 +18,8 @@ int main()
 {
 	STRING s { "2025년 11월 19일" };
 	for (int i = 0; i < s.length(); ++i) { 
-		// cout << s[i] << endl;
-		// cout << s.operator[](i) << endl;
+		cout << s[i] << endl;
+		// cout << s.operator[](i) << endl;		// subscript operator
 	}
 
 	save("main.cpp");

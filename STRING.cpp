@@ -100,7 +100,11 @@ STRING STRING::operator+( const STRING& rhs )
 
 	return temp;
 }
-
+// 2025. 11. 19 - subscript operator
+char& STRING::operator[]( const unsigned idx) 
+{ 
+	return p[idx];
+}
 
 unsigned STRING::length() const
 {
