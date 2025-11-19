@@ -28,5 +28,5 @@ int main()
 
 	cout << s << endl; // ****년 **월 **일
 
-	// save("main.cpp");
+	save("main.cpp");
 }
