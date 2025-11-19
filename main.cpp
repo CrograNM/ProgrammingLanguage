@@ -23,7 +23,8 @@ public:
 		++num;
 		return *this;
 	}
-	INT operator++(int) {	// 후위증가
+	const INT operator++(int)
+	{	// 후위증가
 		INT temp { *this };		// 이전의 나를 저장
 		++(*this);				// 나를 1 증가 (반드시 이미 만든 전위증가 연산자를 이용)
 		return temp;			// 저장했던 나를 리턴
@@ -43,7 +44,8 @@ int main()
 //--------
 {
 	INT a = 100;
-	INT b = a++;
+	INT b = a ++;		
+
 	cout << b << endl;
 	cout << a << endl;
 	
