@@ -17,10 +17,15 @@ int main()
 //--------
 {
 	STRING s { "2025년 11월 19일" };
-	for (int i = 0; i < s.length(); ++i) { 
-		cout << s[i] << endl;
-		// cout << s.operator[](i) << endl;		// subscript operator
+
+	// [문제] s의 글자 중에서 숫자를 "*"로 바꿔라.
+	for (int i = 0; i < s.length(); ++i) {
+		if (isdigit(s[i])) {
+			s[i] = '*';
+		}
 	}
 
-	save("main.cpp");
+	cout << s << endl; // ****년 **월 **일
+
+	// save("main.cpp");
 }
