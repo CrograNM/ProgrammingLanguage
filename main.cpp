@@ -19,10 +19,10 @@ class INT {
 public:
 	INT(int num) : num { num } { }
 
-	// INT(const INT&) = default;				// 이런 식으로 할 수도 있지만, 쓸 이유도 전혀 없음
-	// INT& operator=(const INT&) = default;	// 컴파일러가 자동으로 만든다
-
-	// Single-ton 디자인 패턴은 만들지 말고, 전역으로 만드는게 훨씬 낫다
+	INT& operator++() { // 전위증가
+		++num;
+		return *this;
+	}
 
 private :
 	int num;
@@ -31,15 +31,6 @@ private :
 		os << rhs.num;
 		return os;
 	}
-	friend INT operator++(INT& lhs) { // 전위증가
-		++lhs.num;
-		return lhs;
-	}
-	friend INT operator++(INT& lhs, int) { // 후위증가
-		INT temp = lhs;
-		lhs.num++;
-		return temp;
-	}
 };
 
 //--------
@@ -47,7 +38,7 @@ int main()
 //--------
 {
 	INT a = 100;
-	INT b = a++;
+	INT b = ++a;
 	cout << b << endl;
 	
 	save("main.cpp");
