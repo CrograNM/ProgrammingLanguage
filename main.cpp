@@ -16,9 +16,9 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 int main()
 //--------
 {
-	std::string s1 { "2025년 11월 19일" };
-	std::string s2 { "11주 2일" };
-
+	STRING s1 { "2025년 11월 19일" };
+	STRING s2 { move(s1) };
+	
 	cout << "s1 - " << s1 << endl;
 	cout << "s2 - " << s2 << endl;
 	

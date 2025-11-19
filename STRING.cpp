@@ -82,6 +82,39 @@ STRING& STRING::operator=(const STRING& other)
 	return *this;
 }
 
+// 2025. 11. 19 이동생성자
+STRING::STRING(STRING&& other)
+	: id { ++gid }
+	, len { other.len }
+	, p { other.p }
+{
+	other.len = 0;
+	other.p = nullptr;
+	if (관찰)
+		std::println("[{:5}] 이동생성, 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+				 id, (void*)this, len, (void*)p);
+}
+
+// 2025. 11. 19 이동할당연산자
+STRING& STRING::operator=(STRING&& other)
+{
+	if (this == &other)	// 자기 자신 할당 방지
+		return *this;
+	delete[] p;
+
+	len = other.len;
+	p = other.p;
+
+	other.len = 0;
+	other.p = nullptr;
+
+	if (관찰)
+		std::println("[{:5}] 이동할당, 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
+				 id, (void*)this, len, (void*)p);
+
+	return *this;
+}
+
 // 연산자 오버로딩 함수들
 // 2025. 11. 12
 STRING STRING::operator+( const STRING& rhs )
