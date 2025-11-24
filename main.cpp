@@ -9,7 +9,7 @@
 #include <string>
 #include <random>
 #include <print>
-
+#include <fstream>
 #include "save.h"
 #include "STRING.h"
 using namespace std;
@@ -54,8 +54,7 @@ private:
 
 public:
 	friend ostream& operator<<(ostream& os, const Dog& dog) { 
-		std::print(os, "[{:6}] - ", dog.id);
-		os << dog.name;
+		os << dog.id << "    " << dog.name;
 		return os; 
 	}
 };
@@ -63,10 +62,12 @@ public:
 int main()
 //--------
 {
-	Dog dogs[10];
+	ofstream out { "개천마리.txt" };
+
+	Dog dogs[1000];
 
 	for (const Dog& dog : dogs)
-		cout << dog << endl;		// [id 6글자] - name 포맷으로 출력
+		out << dog << endl;	
 
 	save("main.cpp");
 }
