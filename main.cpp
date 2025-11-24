@@ -7,38 +7,63 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
+#include <print>
+#include <random>
+
 #include "save.h"
 #include "STRING.h"
 using namespace std;
 
 extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 
-// 부를 수 있는 것은 함수만이 아니다. -> callable type (부를 수 있는 타입) 
+// [문제] main이 의도한대로 실행되도록 class Dog를 코딩하라.
+// class Dog {
+// private:
+//		int id;				// id는 [1, 10'0000]의 랜덤 int값으로 생성
+//		STRING name;		// name은 [10, 60]의 랜덤 길이를 갖는다
+//							// name은 ['a', 'z']의 랜덤 소문자로 생성된다
+// }
+// 
+// class STRING은 외부에서 구입한 class라서 수정할 수 없다.
 
-class Dog { 
+default_random_engine dre { random_device{}() };
+uniform_int_distribution<int> uid_id { 1, 100'000 };
+uniform_int_distribution<int> uid_len { 10, 60 };
+uniform_int_distribution<char> uid_char { 'a', 'z' };
+
+class Dog {
 public:
-	bool operator()(const STRING& a, const STRING& b) const{ 
-		return a.length() < b.length();
+	Dog()
+	{
+		id = uid_id(dre);
+
+		int len = uid_len(dre);
+		char* buf = new char[len + 1]; // +1 for null
+		for (int i = 0; i < len; ++i)
+			buf[i] = (char)uid_char(dre);
+		buf[len] = '\0';
+		name = STRING(buf);
+		delete[] buf;
+	}
+
+private:
+	int id;
+	STRING name;
+
+public:
+	friend ostream& operator<<(ostream& os, const Dog& dog) { 
+		std::print("[{:6}] - {}", dog.id, dog.name);
+		return os; 
 	}
 };
 //--------
 int main()
 //--------
 {
-	STRING s[] { "333", "55555", "1", "4444", "22" };
-	
-	// () 연산자도 오버로딩 가능하다.
-	// 그래서 이런 코딩도 가능하다.
-	Dog dog;							// dog를 호출할 수 있다니? -> callable object
-	std::sort(begin(s), end(s), dog);
-	//qsort(s, 5, sizeof(STRING), dog); // 얘는 안된다.
-	
-	// () 연산자 오버로딩 함수는 함수객체(function object)라고 부른다.
+	Dog dogs[10];
 
-	for ( const STRING& str : s )
-		cout << str << '\n';
-	
-	(*save)("main.cpp");
-	// (*함수이름) : 함수 포인터 (함수의 주소를 담는 변수), 얘를 호출하면 함수가 실행된다.
+	for (const Dog& dog : dogs)
+		cout << dog << endl;		// [id 6글자] - name 포맷으로 출력
+
+	save("main.cpp");
 }
