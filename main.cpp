@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include <string>
-#include <print>
 #include <random>
+#include <print>
 
 #include "save.h"
 #include "STRING.h"
@@ -27,9 +27,9 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 // class STRING은 외부에서 구입한 class라서 수정할 수 없다.
 
 default_random_engine dre { random_device{}() };
-uniform_int_distribution<int> uid_id { 1, 100'000 };
-uniform_int_distribution<int> uid_len { 10, 60 };
-uniform_int_distribution<char> uid_char { 'a', 'z' };
+uniform_int_distribution uid_id { 1, 100'000 };
+uniform_int_distribution uid_len { 10, 60 };
+uniform_int_distribution<int> uid_char { 'a', 'z' };	// <int> 명시적으로 적어주기
 
 class Dog {
 public:
@@ -38,12 +38,14 @@ public:
 		id = uid_id(dre);
 
 		int len = uid_len(dre);
-		char* buf = new char[len + 1]; // +1 for null
+		char* p = new char[len + 1];
 		for (int i = 0; i < len; ++i)
-			buf[i] = (char)uid_char(dre);
-		buf[len] = '\0';
-		name = STRING(buf);
-		delete[] buf;
+			p[i] = (char)uid_char(dre);
+		p[len] = '\0';
+		STRING temp = { p };
+		delete[] p;
+
+		name = move(temp);	// 이동할당
 	}
 
 private:
@@ -52,7 +54,8 @@ private:
 
 public:
 	friend ostream& operator<<(ostream& os, const Dog& dog) { 
-		std::print("[{:6}] - {}", dog.id, dog.name);
+		std::print(os, "[{:6}] - ", dog.id);
+		os << dog.name;
 		return os; 
 	}
 };
