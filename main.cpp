@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "save.h"
 #include "STRING.h"
 using namespace std;
@@ -16,13 +17,20 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 int main()
 //--------
 {
-	관찰 = true;
+	// move semantics 의 활용 예제 - modern C++의 함수 인자 전달
+	STRING s[] { "333", "55555", "1", "4444", "22" };
+	
+	// std::sort();					
+	// std::ranges::sort();		// 두 코드는 서로 다르지만 move 를 이해하는 코드들이다.
 
-	STRING s1 { "2025년 11월 19일" };
-	STRING s2 { move(s1) };
+	관찰 = true;
+	std::sort(begin(s), end(s), []( const STRING& a, const STRING& b ) { 
+		return a.length() > b.length();
+		});
+	관찰 = false;
+
+	for ( const STRING& str : s )
+		cout << str << '\n';
 	
-	cout << "s1 - " << s1 << endl;
-	cout << "s2 - " << s2 << endl;
-	
-	save("main.cpp");
+	//save("main.cpp");
 }
