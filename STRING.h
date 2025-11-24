@@ -12,8 +12,9 @@
 // 5. STRING( STRING&& )					- move constructor
 // 6. STRING& operator=( STRING&& )			- move assignment operator
 // 
-// 2025. 11. 5
-// - 관찰메시지를 작성하였다.
+// 2025. 11. 5 - 관찰메시지를 작성하였다.
+// 2025. 11. 10 - 복사생성자
+// 2025. 11. 24 - 이동생성자
 //-------------------------------------------------------------
 #pragma once
 
@@ -28,8 +29,8 @@ public:
 	STRING(const STRING&);					// 3. 복사생성자		- 2025. 11. 10
 	STRING& operator=(const STRING&);		// 4. 복사할당연산자	- 2025. 11. 10
 
-	STRING(STRING&&);						// 5. 이동생성자		- 2025. 11. 19
-	STRING& operator=(STRING&&);			// 6. 이동할당연산자	- 2025. 11. 19
+	STRING(STRING&&);						// 5. 이동생성자		- 2025. 11. 24
+	STRING& operator=(STRING&&);			// 6. 이동할당연산자	- 2025. 11. 24
 
 	// 연산자 오버로딩 함수들
 	STRING operator+( const STRING& rhs );	// 2025. 11. 12

@@ -16,6 +16,8 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 int main()
 //--------
 {
+	관찰 = true;
+
 	STRING s1 { "2025년 11월 19일" };
 	STRING s2 { move(s1) };
 	

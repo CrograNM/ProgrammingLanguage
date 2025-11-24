@@ -5,6 +5,7 @@
 // 2025. 11. 5
 // 2025. 11. 12 필요할 때만 관찰메시지를 출력한다.
 // 2025. 11. 17 friend 연산자 함수 추가
+// 2025. 11. 24 6개 special function 모두 구현
 //-------------------------------------------------------------
 
 #include <iostream>
@@ -82,25 +83,30 @@ STRING& STRING::operator=(const STRING& other)
 	return *this;
 }
 
-// 2025. 11. 19 이동생성자
-STRING::STRING(STRING&& other)
+// 2025. 11. 24 이동생성자
+STRING::STRING(STRING&& other) // && : lvalue --> rvalue
 	: id { ++gid }
-	, len { other.len }
-	, p { other.p }
 {
-	other.len = 0;
+	len = other.len;
+	p = other.p;
+
+	// other는 xvalue가 된다.
+	// xvalue를 재사용하게 된다면 Valid but unspecified 상태 (유효하지만 지정되지 않은 상태)가 된다.
+	// 안전을 위해 other의 멤버들을 초기화한다.
+	other.len = 0;		
 	other.p = nullptr;
 	if (관찰)
 		std::println("[{:5}] 이동생성, 내주소:{:14}, 개수:{:<3}, 글주소:{:14}",
 				 id, (void*)this, len, (void*)p);
 }
 
-// 2025. 11. 19 이동할당연산자
+// 2025. 11. 24 이동할당연산자
 STRING& STRING::operator=(STRING&& other)
 {
 	if (this == &other)	// 자기 자신 할당 방지
 		return *this;
-	delete[] p;
+
+	delete[] p;			// 내 자원을 돌려준다.
 
 	len = other.len;
 	p = other.p;
