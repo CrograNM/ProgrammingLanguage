@@ -31,6 +31,14 @@ private:
 	int id;
 	std::string name;
 
+	friend std::istream& operator>>(std::istream& is, Dog& dog) {
+		is >> dog.id >> dog.name;
+		return is;
+	}
+	friend std::ostream& operator<< (ostream& os, const Dog& dog) { 
+		print(os, "[{:6}] - {}", dog.id, dog.name);
+		return os;
+	}
 };
 
 //--------
@@ -43,16 +51,11 @@ int main()
 		return 20251126;
 	}
 
-	Dog dogs[1'000];	// 40,000 (Stack = 1MB)
-
-
-	int cnt {0};
-	int n;
-	string s;
-	while (in >> n >> s) { 
-		++cnt;
+	Dog dogs[1'000];
+	for (Dog& dog : dogs) { 
+		in >> dog;
 	}
-	cout << "읽은 개수: " << cnt << endl;
+	cout << dogs[0] << endl;
 
 	save("main.cpp");
 }
