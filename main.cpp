@@ -11,6 +11,17 @@
 
 using namespace std;
 
+class A {
+	// B b;					// A has-a B
+};
+
+class B : A {				// B is-a A
+};
+
+class Animal { };
+class Dog : Animal { };		// Dog is-a Animal
+
+
 //--------
 int main()
 //--------
