@@ -27,6 +27,9 @@ extern bool 관찰; // 관찰하고 싶으면 true로 바꾸자
 // 화면에 id와 name을 출력하라.
 
 class Dog {
+public:
+	int getLen() const { return name.length(); }
+
 private:
 	int id;
 	std::string name;
@@ -36,10 +39,18 @@ private:
 		return is;
 	}
 	friend std::ostream& operator<< (ostream& os, const Dog& dog) { 
-		print(os, "[{:6}] - {}", dog.id, dog.name);
+		os << "아이디 - " << dog.id << ", 이름 - " << dog.name;
 		return os;
 	}
 };
+
+int cnt {};
+int 길기오(const void* a, const void* b)
+{
+	// 얼마나 호출? - N * logN -> 1000 * log2(1000) = 약 10,000회 
+	++cnt;
+	return ((const Dog*)a)->getLen() - ((const Dog*)b)->getLen();
+}
 
 //--------
 int main()
@@ -55,7 +66,12 @@ int main()
 	for (Dog& dog : dogs) { 
 		in >> dog;
 	}
-	cout << dogs[0] << endl;
+
+	// 길이기준 오름차순 정렬(qsort)
+	cout << "정렬 시작";
+	qsort(dogs, 1'000, sizeof(Dog), 길기오);
+	cout << endl;
+	cout << "길기오를 이용한 횟수 - " << cnt << endl;
 
 	save("main.cpp");
 }
