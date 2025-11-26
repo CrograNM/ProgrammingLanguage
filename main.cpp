@@ -10,6 +10,10 @@
 #include <random>
 #include <print>
 #include <fstream>
+
+#include <thread>
+#include <chrono>
+
 #include "save.h"
 #include "STRING.h"
 using namespace std;
@@ -44,11 +48,8 @@ private:
 	}
 };
 
-int cnt {};
 int 길기오(const void* a, const void* b)
 {
-	// 얼마나 호출? - N * logN -> 1000 * log2(1000) = 약 10,000회 
-	++cnt;
 	return ((const Dog*)a)->getLen() - ((const Dog*)b)->getLen();
 }
 
@@ -63,15 +64,18 @@ int main()
 	}
 
 	Dog dogs[1'000];
-	for (Dog& dog : dogs) { 
+	for (Dog& dog : dogs) 
 		in >> dog;
-	}
+	
 
 	// 길이기준 오름차순 정렬(qsort)
-	cout << "정렬 시작";
 	qsort(dogs, 1'000, sizeof(Dog), 길기오);
-	cout << endl;
-	cout << "길기오를 이용한 횟수 - " << cnt << endl;
 
+	for (const Dog& dog : dogs) 
+	{
+		cout << dog << endl;
+		// this_thread::sleep_for();
+	}
+	
 	save("main.cpp");
 }
