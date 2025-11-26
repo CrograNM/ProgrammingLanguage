@@ -13,29 +13,22 @@
 
 using namespace std;
 
-class StarString : public string { 
+class Animal {
 private:
-	friend ostream& operator<<(ostream& os, const StarString& ss) { 
-		for ( const char& c : ss) {
-			if (isdigit(c)) 
-				os << '*';
-			else 
-				os << c;
-		}
-		return os;
-	}
+	string name;
+};
+
+class Dog : public Animal {
+private:
+	int speed;
 };
 
 //--------
 int main()
 //--------
 {
-	string str { "2025년 11월 26일 - 상속하면 뭐가 좋은가" };
-
-	// [과제] str을 화면에 출력하는데 숫자는 '*'로 바꿔라.
-	StarString ss { str };
-	
-	cout << ss << endl;
+	// Dog dog { "코코" };
+	// cout << dog << endl; // 출력 - 나는 코코입니다.
 
 	save("main.cpp");
 }
