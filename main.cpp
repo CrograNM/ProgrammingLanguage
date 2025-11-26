@@ -31,18 +31,6 @@ private:
 	int id;
 	std::string name;
 
-public:
-	friend istream& operator>>(istream& in, Dog& dog) {
-		in >> dog.id >> dog.name;
-		return in;
-	}
-	friend ostream& operator<<(ostream& out, const Dog& dog) {
-		print(out, "{:6} - {}", dog.id, dog.name);
-		return out;
-	}
-	bool operator<(const Dog& other) const {
-		return name.length() < other.name.length();
-	}
 };
 
 //--------
@@ -57,15 +45,14 @@ int main()
 
 	Dog dogs[1'000];	// 40,000 (Stack = 1MB)
 
-	for (int i = 0; i < 1'000; ++i) {
-		in >> dogs[i];
-	}
 
-	sort(begin(dogs), end(dogs));
-
-	for (const Dog& dog : dogs) {
-		cout << dog << endl;
+	int cnt {0};
+	int n;
+	string s;
+	while (in >> n >> s) { 
+		++cnt;
 	}
+	cout << "읽은 개수: " << cnt << endl;
 
 	save("main.cpp");
 }
