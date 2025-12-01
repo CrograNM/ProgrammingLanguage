@@ -17,8 +17,12 @@ class Animal {
 public:
 	Animal(const char* n) : name(n) { }
 
-	void move() { 
-		cout << name << "이야 - 움직이니까 동물이다" << endl;
+	virtual void move() { 
+		cout << name << " - 움직이니까 동물이다" << endl;
+	}
+
+	string getName() const {
+		return name;
 	}
 
 private:
@@ -27,10 +31,14 @@ private:
 
 class Dog : public Animal {
 private:
-	int speed = 0;
+	int speed = 10;
 
 public:
 	Dog(const char* n) : Animal(n) {
+	}
+
+	void move() override {
+		cout << getName() << " 난 달리기 선수 - " << speed << endl;
 	}
 };
 
@@ -39,7 +47,7 @@ int main()
 //--------
 {
 	Dog dog { "코코" };
-	dog.move();
+	dog.move();		// 코코 난 달리기 선수 - speed
 
 	save("main.cpp");
 }
