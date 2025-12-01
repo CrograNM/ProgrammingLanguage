@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProgrammingLanguage", "ProgrammingLanguage.vcxproj", "{E664CC65-7498-4E98-AD85-FDCD3B8B464A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShapeManager", "..\ShapeManager\ShapeManager.vcxproj", "{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShapeManager", "ShapeManager\ShapeManager.vcxproj", "{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
