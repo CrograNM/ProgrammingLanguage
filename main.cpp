@@ -17,15 +17,11 @@ class Animal {
 public:
 	Animal(const char* n) : name(n) { }
 
-	virtual void move() { 
-		cout << name << " - 움직이니까 동물이다" << endl;
+	void move() { 
+		cout << name << " - 움직이는 중" << endl;
 	}
 
-	string getName() const {
-		return name;
-	}
-
-private:
+protected:	// 상속 때문에 만들 수 밖에 없었던 접근 지정자
 	string name;
 };
 
@@ -37,8 +33,9 @@ public:
 	Dog(const char* n) : Animal(n) {
 	}
 
-	void move() override {
-		cout << getName() << " 난 달리기 선수 - " << speed << endl;
+	// member function overriding -> 오버로딩과 차이점은? 
+	void move() {
+		cout << name << " 난 달리기 선수 - " << speed << endl;
 	}
 };
 
