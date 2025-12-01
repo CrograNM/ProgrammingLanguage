@@ -50,7 +50,7 @@ public:
 	int getSpeed() const { return speed; }
 
 private:
-	int speed = 10;
+	int speed;
 };
 
 int 속도기준오름차순(const void* a, const void* b)
