@@ -18,6 +18,7 @@
 #include "triangle.h"
 #include "circle.h"
 #include "rectangle.h"
+#include "line.h"
 #include "ShapeManager.h"
 #include "Menu.h"
 
@@ -43,7 +44,7 @@ int main()
             // 랜덤한 도형 생성 (기본 생성자)
             case 0: 
             { 
-				int randType = rand() % 3; // 0:Triangle, 1:Rectangle, 2:Circle
+				int randType = rand() % 4; // 0:Triangle, 1:Rectangle, 2:Circle, 3:Line
 				type = randType + 1; // 메뉴 선택과 맞추기 위해 +1
 
                 switch (randType) {
@@ -56,6 +57,8 @@ int main()
                 case 2: 
                     p = new Circle();
                     break;
+                case 3:
+					p = new Line();
                 }
                 break;
             }
@@ -87,6 +90,15 @@ int main()
                 p = new Circle(Point(cx, cy), radius);
                 break;
             }
+            // Line
+            case 4:
+            {
+                int x1, y1, x2, y2;
+                std::cout << "선의 시작점과 끝점 좌표를 입력하세요 (x1 y1 x2 y2): ";
+                std::cin >> x1 >> y1 >> x2 >> y2;
+                p = new Line(Point(x1, y1), Point(x2, y2));
+                break;
+			}
             default:
                 std::cout << "잘못된 도형 타입입니다." << std::endl;
                 break;

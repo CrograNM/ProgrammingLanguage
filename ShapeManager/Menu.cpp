@@ -25,6 +25,7 @@ int Menu::selectShapeType()
 	cout << "1. 삼각형\n";
 	cout << "2. 사각형\n";
 	cout << "3. 원\n";
+	cout << "4. 선\n";
 	cout << ">> 선택: ";
 	cin >> choice;
 	return choice;

@@ -6,9 +6,11 @@
 #include <print>
 #include "shapeManager.h"
 
+
 #include "Triangle.h"   // dynamic_cast를 위해 필요
 #include "Rectangle.h"
 #include "Circle.h"
+#include "Line.h"
 
 using namespace std;
 
@@ -123,6 +125,7 @@ void ShapeManager::removeByType(int type)
         if (type == 1 && dynamic_cast<Triangle*>(shapes[i])) isTarget = true;
         else if (type == 2 && dynamic_cast<Rectangle*>(shapes[i])) isTarget = true;
         else if (type == 3 && dynamic_cast<Circle*>(shapes[i])) isTarget = true;
+		else if (type == 4 && dynamic_cast<Line*>(shapes[i])) isTarget = true;
 
         if (isTarget) {
             removeAt(i); // 위에서 만든 함수 재사용
@@ -194,6 +197,7 @@ void ShapeManager::loadFromFilename(std::string filename)
 		if (type == 1) p = new Triangle();
 		else if (type == 2) p = new Rectangle();
 		else if (type == 3) p = new Circle();
+		else if (type == 4) p = new Line();
 
 		if (p != nullptr) {
 			p->load(fin); // 3. 해당 객체의 데이터 채우기
