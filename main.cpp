@@ -15,11 +15,13 @@ using namespace std;
 
 class Animal {
 public:
+	Animal(const char* n) : name(n) { }
+
 	void move() { 
 		cout << name << "이야 - 움직이니까 동물이다" << endl;
 	}
 
-protected:
+private:
 	string name;
 };
 
@@ -28,8 +30,7 @@ private:
 	int speed = 0;
 
 public:
-	Dog(const char* str) { 
-		name = str;
+	Dog(const char* n) : Animal(n) {
 	}
 };
 
