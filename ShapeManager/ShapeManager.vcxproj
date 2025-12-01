@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="shapes.txt" />
+    <Text Include="메모.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
