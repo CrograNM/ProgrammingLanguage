@@ -37,13 +37,23 @@ public:
 	}
 
 	// member function overriding -> 오버로딩과 차이점은? 
-	void move() {
+	void move() const {
 		cout << name << " 난 달리기 선수 - " << speed << endl;
+	}
+
+	int getSpeed() const {
+		return speed;
 	}
 
 private:
 	int speed { uid(dre) };
 };
+
+int 스기오(const void* a, const void* b) 
+{ 
+	// return ((const Dog*)a)->getSpeed() - ((const Dog*)b)->getSpeed();
+	return static_cast<const Dog*>(a)->getSpeed() - static_cast<const Dog*>(b)->getSpeed();
+}
 
 //--------
 int main()
@@ -52,15 +62,12 @@ int main()
 	// [문제] 문제없이 실행되도록 필요한 코드를 추가하고 답지에 추가한 내용을 적어라.
 	Dog dogs[1000];				// 여기서 speed 값은 [1, 10'000] 랜덤값으로 설정한다.
 
-	for (const Dog& dog : dogs) { 
-		dog.move();
-	}
 
 	// speed 기준 오름차순으로 정렬
-	// qsort(dogs, 1000, sizeof(Dog), 속도기준오름차순);
+	qsort(dogs, 1000, sizeof(Dog), 스기오);
 	
 	// 가장 빠른 dog의 정보를 화면에 출력
-	// dogs[999].move();
+	dogs[1000 - 1].move();
 
 	// save("main.cpp");
 }
