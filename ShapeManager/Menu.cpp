@@ -10,6 +10,8 @@ int Menu::selectMainMenu()
 	cout << "1. 도형 추가\n";
 	cout << "2. 도형 삭제\n";
 	cout << "3. 전체 그리기\n";
+	cout << "4. 파일로 저장\n";
+	cout << "5. 파일에서 불러오기\n";
 	cout << "0. 종료\n";
 	cout << ">> 선택: ";
 	cin >> choice;

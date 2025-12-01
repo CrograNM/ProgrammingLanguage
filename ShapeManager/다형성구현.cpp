@@ -11,6 +11,8 @@
 //----------------------------------------------------------------------------
 
 #include <iostream>
+#include <string>
+#include <fstream>
 
 #include "point.h"
 #include "triangle.h"
@@ -115,8 +117,29 @@ int main()
         }
         // [그리기]
         case 3: 
+        {
             sm.draw();
             break;
+        }
+        // [파일 저장]
+        case 4:
+        {
+            std::string filename;
+            std::cout << "저장할 파일 이름 입력 (예: shapes.txt) : ";
+            std::cin >> filename;
+            sm.saveToFilename(filename);
+            break;
+        }
+		// [파일 불러오기]
+        case 5: 
+        {
+            std::string filename;
+            std::cout << "불러올 파일 이름 입력 : ";
+            std::cin >> filename;
+            sm.loadFromFilename(filename);
+            sm.draw(); // 잘 불러와졌는지 확인
+            break;
+        }
         }
     }
 }

@@ -26,6 +26,10 @@ public:
 
 	virtual void draw() const override;
 
+	virtual int getID() const override { return 3; } // 3번은 원
+	virtual void save(std::ofstream& fout) const override;
+	virtual void load(std::ifstream& fin) override;
+
 private:
 	Point center {};	// 원의 중심점 좌표
 	double rad {};		// 원의 반지름

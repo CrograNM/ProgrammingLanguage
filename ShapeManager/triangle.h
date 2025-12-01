@@ -18,6 +18,10 @@ public:
 
 	virtual void draw() const override;
 
+	virtual int getID() const override { return 1; } // 1번은 삼각형
+	virtual void save(std::ofstream& fout) const override;
+	virtual void load(std::ifstream& fin) override;
+
 private:
 	Point p1 { }, p2 { }, p3 { };
 };

@@ -4,6 +4,7 @@
 //-----------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include "rectangle.h"
 
 Rectangle::Rectangle()
@@ -35,4 +36,14 @@ void Rectangle::draw() const
 {
 	std::cout << "사각형 - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << ")" << '\n';
+}
+
+void Rectangle::save(std::ofstream& fout) const
+{
+	fout << p1.x << " " << p1.y << " " << p2.x << " " << p2.y << std::endl;
+}
+
+void Rectangle::load(std::ifstream& fin)
+{
+	fin >> p1.x >> p1.y >> p2.x >> p2.y;
 }

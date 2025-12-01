@@ -29,4 +29,8 @@ public:
 	// [추가된 기능]
 	void removeAt(int index);      // 특정 번호 삭제
 	void removeByType(int type);   // 1:Triangle, 2:Rectangle, 3:Circle (타입별 전체 삭제)
+
+	void saveToFilename(std::string filename);		// 파일로 저장
+	void loadFromFilename(std::string filename);	// 파일에서 불러오기
+	void clear();                   // 모든 도형 삭제 (로드 전에 기존 도형 삭제용)
 };

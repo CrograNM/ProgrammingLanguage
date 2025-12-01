@@ -2,6 +2,7 @@
 // ShapeManager.cpp 
 //----------------------------------------------------------------------------
 #include <iostream>
+#include <fstream>
 #include <print>
 #include "shapeManager.h"
 
@@ -49,9 +50,8 @@ void ShapeManager::draw() const
 		shapes[i]->draw();
 	}
 	cout << '\n';
+    cout << "그리기 끝\n";
 	cout << "------------------------------------------" << '\n';
-	cout << "그리기를 마칩니다" << '\n';
-	cout << "------------------------------------------" << '\n' << '\n';
 };
 
 // 1. 특정 인덱스 삭제
@@ -105,4 +105,73 @@ void ShapeManager::removeByType(int type)
         cout << "해당 타입의 도형이 없습니다.\n";
     else
         cout << "총 " << deletedCount << "개의 도형을 삭제했습니다.\n";
+}
+
+
+// 기존 도형 모두 삭제 (로드 전 초기화 용도)
+void ShapeManager::clear()
+{
+	for (int i = 0; i < nShape; ++i) {
+		delete shapes[i];
+	}
+	nShape = 0;
+}
+
+void ShapeManager::saveToFilename(std::string filename)
+{
+	std::ofstream fout { filename }; // 파일 열기 (쓰기 모드)
+
+	if (!fout.is_open()) {
+		std::cout << "파일을 열 수 없습니다.\n";
+		return;
+	}
+
+	fout << nShape << std::endl; // 1. 전체 도형 개수 저장
+
+	for (int i = 0; i < nShape; ++i) {
+		// 2. 도형의 타입 ID 저장 (이게 있어야 나중에 복구할 때 뭔지 알 수 있음)
+		fout << shapes[i]->getID() << " ";
+
+		// 3. 도형별 데이터 저장
+		shapes[i]->save(fout);
+	}
+
+	fout.close();
+	std::cout << filename << "에 저장을 완료했습니다.\n";
+}
+
+void ShapeManager::loadFromFilename(std::string filename)
+{
+	std::ifstream fin(filename); // 파일 열기 (읽기 모드)
+
+	if (!fin.is_open()) {
+		std::cout << "파일을 찾을 수 없습니다.\n";
+		return;
+	}
+
+	// 기존 데이터 비우기 (새로 불러오니까)
+	clear();
+
+	int count = 0;
+	fin >> count; // 1. 전체 개수 읽기
+
+	for (int i = 0; i < count; ++i) {
+		int type = 0;
+		fin >> type; // 2. 도형 타입 읽기
+
+		Shape* p = nullptr;
+
+		// 타입에 맞춰 빈 객체 생성 (Factory Pattern 기초)
+		if (type == 1) p = new Triangle();
+		else if (type == 2) p = new Rectangle();
+		else if (type == 3) p = new Circle();
+
+		if (p != nullptr) {
+			p->load(fin); // 3. 해당 객체의 데이터 채우기
+			insert(p);    // 매니저에 등록
+		}
+	}
+
+	fin.close();
+	std::cout << "파일에서 " << nShape << "개의 도형을 읽어왔습니다.\n";
 }

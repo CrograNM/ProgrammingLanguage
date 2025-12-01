@@ -4,6 +4,7 @@
 // 2025. 11. 28
 //----------------------------------------------------------------------------
 #include <iostream>
+#include <fstream>
 #include "triangle.h"
 
 Triangle::Triangle()
@@ -39,3 +40,16 @@ void Triangle::draw() const
 		<< p2.x << "," << p2.y << "), ("
 		<< p3.x << "," << p3.y << ")" << '\n';
 };
+
+void Triangle::save(std::ofstream& fout) const
+{
+	fout << p1.x << " " << p1.y << " "
+		 << p2.x << " " << p2.y << " "
+		 << p3.x << " " << p3.y << std::endl;
+}
+void Triangle::load(std::ifstream& fin)
+{
+	fin >> p1.x >> p1.y
+		>> p2.x >> p2.y
+		>> p3.x >> p3.y;
+}

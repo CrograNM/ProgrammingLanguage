@@ -6,6 +6,7 @@
 //----------------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
 #include "circle.h"
 
 Circle::Circle() 
@@ -43,3 +44,15 @@ void Circle::draw() const
 	std::cout << "원 - 중심점(" << center.x << "," << center.y
 		<< ") 반지름 " << rad << '\n';
 };
+
+void Circle::save(std::ofstream& fout) const
+{
+	// 저장 순서: x y radius
+	fout << center.x << " " << center.y << " " << rad << std::endl;
+}
+
+void Circle::load(std::ifstream& fin)
+{
+	// 읽는 순서: x y radius (저장한 순서 그대로)
+	fin >> center.x >> center.y >> rad;
+}
