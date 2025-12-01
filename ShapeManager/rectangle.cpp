@@ -1,4 +1,4 @@
-//-----------------------------------------
+ï»¿//-----------------------------------------
 // Rectangle.cpp
 // 2025. 11. 28
 //-----------------------------------------
@@ -9,30 +9,30 @@
 Rectangle::Rectangle()
 	: p1 { }, p2 { }
 {
-	std::cout << "Rectangle ±âº»»ý¼ºÀÚ È£Ãâ\n";
+	std::cout << "Rectangle ê¸°ë³¸ìƒì„±ìž í˜¸ì¶œ\n";
 }
 
 Rectangle::Rectangle(const Point& a, const Point& b)
 	: p1 { a }, p2 { b }
 {
-	std::cout << "Rectangle »ý¼ºÀÚ È£Ãâ - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "Rectangle ìƒì„±ìž í˜¸ì¶œ - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << ")\n";
 }
 
 Rectangle::Rectangle(const Rectangle& other)
 	: p1 { other.p1 }, p2 { other.p2 }
 {
-	std::cout << "Rectangle º¹»ç»ý¼ºÀÚ È£Ãâ - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "Rectangle ë³µì‚¬ìƒì„±ìž í˜¸ì¶œ - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << ")\n";
 }
 
 Rectangle::~Rectangle()
 {
-	std::cout << "Rectangle ¼Ò¸êÀÚ È£Ãâ\n";
+	std::cout << "Rectangle ì†Œë©¸ìž í˜¸ì¶œ\n";
 }
 
 void Rectangle::draw() const
 {
-	std::cout << "»ç°¢Çü - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "ì‚¬ê°í˜• - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << ")" << '\n';
 }

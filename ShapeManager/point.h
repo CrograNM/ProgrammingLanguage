@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 //---------------------------------------------------
 // Point.h		Point class declaration
-//				2Â÷¿ø ÁÂÇ¥ (x, y)¸¦ ³ªÅ¸³½´Ù.
+//				2ì°¨ì› ì¢Œí‘œ (x, y)ë¥¼ ë‚˜íƒ€ë‚¸ë‹¤.
 //---------------------------------------------------
 
-#ifndef _Point // ÇÑ ¹ø¸¸ include ÇÒ ¼ö ÀÖµµ·Ï ÇÔ
+#ifndef _Point // í•œ ë²ˆë§Œ include í•  ìˆ˜ ìˆë„ë¡ í•¨
 #define _Point
 
 struct Point
@@ -14,7 +14,7 @@ struct Point
 
 	Point();						// default constructor
 	Point(double x, double y);		
-	Point(const Point&) = default;	// copy constructor (default : »ç¿ëÀÚ°¡ ¸¸µé ÇÊ¿ä ¾øÀ½)
+	Point(const Point&) = default;	// copy constructor (default : ì‚¬ìš©ìê°€ ë§Œë“¤ í•„ìš” ì—†ìŒ)
 };
 
 

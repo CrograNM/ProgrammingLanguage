@@ -1,4 +1,4 @@
-//----------------------------------------------------------------------------
+ï»¿//----------------------------------------------------------------------------
 // Triangle.cpp
 //
 // 2025. 11. 28
@@ -9,13 +9,13 @@
 Triangle::Triangle()
 	: p1 { }, p2 { }, p3 { }
 {
-	std::cout << "Triangle ±âº»»ý¼ºÀÚ È£Ãâ\n";
+	std::cout << "Triangle ê¸°ë³¸ìƒì„±ìž í˜¸ì¶œ\n";
 }
 
 Triangle::Triangle(const Point& a, const Point& b, const Point& c)
 	: p1 { a }, p2 { b }, p3 { c }
 {
-	std::cout << "Triangle »ý¼ºÀÚ È£Ãâ - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "Triangle ìƒì„±ìž í˜¸ì¶œ - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << "), ("
 		<< p3.x << "," << p3.y << ")\n";
 }
@@ -23,19 +23,19 @@ Triangle::Triangle(const Point& a, const Point& b, const Point& c)
 Triangle::Triangle(const Triangle& other)
 	: p1 { other.p1 }, p2 { other.p2 }, p3 { other.p3 }
 {
-	std::cout << "Triangle º¹»ç»ý¼ºÀÚ È£Ãâ - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "Triangle ë³µì‚¬ìƒì„±ìž í˜¸ì¶œ - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << "), ("
 		<< p3.x << "," << p3.y << ")\n";
 }
 
 Triangle::~Triangle()
 {
-	std::cout << "Triangle ¼Ò¸êÀÚ È£Ãâ\n";
+	std::cout << "Triangle ì†Œë©¸ìž í˜¸ì¶œ\n";
 }
 
 void Triangle::draw() const
 {
-	std::cout << "»ï°¢Çü - (" << p1.x << "," << p1.y << "), ("
+	std::cout << "ì‚¼ê°í˜• - (" << p1.x << "," << p1.y << "), ("
 		<< p2.x << "," << p2.y << "), ("
 		<< p3.x << "," << p3.y << ")" << '\n';
 };

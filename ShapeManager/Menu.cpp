@@ -1,4 +1,4 @@
-// Menu.cpp
+ï»¿// Menu.cpp
 #include <iostream>
 #include "Menu.h"
 using namespace std;
@@ -6,12 +6,12 @@ using namespace std;
 int Menu::selectMainMenu()
 {
 	int choice;
-	cout << "\n=== [ µµÇü °ü¸® ÇÁ·Î±×·¥ ] ===\n";
-	cout << "1. µµÇü Ãß°¡\n";
-	cout << "2. µµÇü »èÁ¦\n";
-	cout << "3. ÀüÃ¼ ±×¸®±â\n";
-	cout << "0. Á¾·á\n";
-	cout << ">> ¼±ÅÃ: ";
+	cout << "\n=== [ ë„í˜• ê´€ë¦¬ í”„ë¡œê·¸ëž¨ ] ===\n";
+	cout << "1. ë„í˜• ì¶”ê°€\n";
+	cout << "2. ë„í˜• ì‚­ì œ\n";
+	cout << "3. ì „ì²´ ê·¸ë¦¬ê¸°\n";
+	cout << "0. ì¢…ë£Œ\n";
+	cout << ">> ì„ íƒ: ";
 	cin >> choice;
 	return choice;
 }
@@ -19,11 +19,11 @@ int Menu::selectMainMenu()
 int Menu::selectShapeType()
 {
 	int choice;
-	cout << "\n--- µµÇü Á¾·ù ¼±ÅÃ ---\n";
-	cout << "1. »ï°¢Çü\n";
-	cout << "2. »ç°¢Çü\n";
-	cout << "3. ¿ø\n";
-	cout << ">> ¼±ÅÃ: ";
+	cout << "\n--- ë„í˜• ì¢…ë¥˜ ì„ íƒ ---\n";
+	cout << "1. ì‚¼ê°í˜•\n";
+	cout << "2. ì‚¬ê°í˜•\n";
+	cout << "3. ì›\n";
+	cout << ">> ì„ íƒ: ";
 	cin >> choice;
 	return choice;
 }
@@ -31,10 +31,10 @@ int Menu::selectShapeType()
 int Menu::selectDeleteMode()
 {
 	int choice;
-	cout << "\n--- »èÁ¦ ¸ðµå ¼±ÅÃ ---\n";
-	cout << "1. Æ¯Á¤ ¹øÈ£(Index)·Î ÇÏ³ª¸¸ »èÁ¦\n";
-	cout << "2. Æ¯Á¤ µµÇü Á¾·ù(Type) ÀüÃ¼ »èÁ¦\n";
-	cout << ">> ¼±ÅÃ: ";
+	cout << "\n--- ì‚­ì œ ëª¨ë“œ ì„ íƒ ---\n";
+	cout << "1. íŠ¹ì • ë²ˆí˜¸(Index)ë¡œ í•˜ë‚˜ë§Œ ì‚­ì œ\n";
+	cout << "2. íŠ¹ì • ë„í˜• ì¢…ë¥˜(Type) ì „ì²´ ì‚­ì œ\n";
+	cout << ">> ì„ íƒ: ";
 	cin >> choice;
 	return choice;
 }
@@ -42,7 +42,7 @@ int Menu::selectDeleteMode()
 int Menu::inputIndex()
 {
 	int idx;
-	cout << ">> »èÁ¦ÇÒ µµÇü ¹øÈ£ ÀÔ·Â: ";
+	cout << ">> ì‚­ì œí•  ë„í˜• ë²ˆí˜¸ ìž…ë ¥: ";
 	cin >> idx;
 	return idx;
 }

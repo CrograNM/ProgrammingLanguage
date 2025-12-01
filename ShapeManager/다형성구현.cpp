@@ -1,14 +1,17 @@
-//----------------------------------------------------------------------------
-// ´ÙÇü¼º±¸Çö.cpp 
+ï»¿//----------------------------------------------------------------------------
+// ë‹¤í˜•ì„±êµ¬í˜„.cpp 
 //
-// ¾Ë¾ÆºÁ¾ß ÇÒ °Í 
+// ì•Œì•„ë´ì•¼ í•  ê²ƒ 
 //
 //
-// - ´ÙÇü¼º(Ploymorphism)ÀÌ¶õ ¹«¾ùÀÎ°¡?
-// - C++ ¾ğ¾î¿¡¼­´Â ¾î¶»°Ô ´ÙÇü¼ºÀ» ±¸ÇöÇÏ´Â°¡?
+// - ë‹¤í˜•ì„±(Ploymorphism)ì´ë€ ë¬´ì—‡ì¸ê°€?
+// - C++ ì–¸ì–´ì—ì„œëŠ” ì–´ë–»ê²Œ ë‹¤í˜•ì„±ì„ êµ¬í˜„í•˜ëŠ”ê°€?
 //
 // 2025. 11. 28
 //----------------------------------------------------------------------------
+
+#include <iostream>
+
 #include "point.h"
 #include "triangle.h"
 #include "circle.h"
@@ -20,26 +23,100 @@
 int main()
 //-------
 {
-	// ÀÌ ÇÁ·Î±×·¥Àº ÇÁ·ÎÁ§Æ®¸¦ È®ÀÎÇÏ±â À§ÇÑ °ÍÀÌ´Ù.
-	// ½Ç½À ¼ø¼­´ë·Î ¹®Á¦¸¦ ÇØ°áÇØ º¸ÀÚ.
+	// ì´ í”„ë¡œê·¸ë¨ì€ í”„ë¡œì íŠ¸ë¥¼ í™•ì¸í•˜ê¸° ìœ„í•œ ê²ƒì´ë‹¤.
+	// ì‹¤ìŠµ ìˆœì„œëŒ€ë¡œ ë¬¸ì œë¥¼ í•´ê²°í•´ ë³´ì.
 	
-	// 1. °ü¸® Å¬·¡½º¸¦ ¸¸µê
-	ShapeManager sm(100);	// ÃÖ´ë 100°³ÀÇ µµÇüÀ» °ü¸®ÇÔ
+	// 1. ê´€ë¦¬ í´ë˜ìŠ¤ë¥¼ ë§Œë“¦
+	ShapeManager sm(100);	// ìµœëŒ€ 100ê°œì˜ ë„í˜•ì„ ê´€ë¦¬í•¨
 
-	// 2. µµÇüµéÀ» °ü¸® Å¬·¡½º¿¡ »ğÀÔÇÔ
-	sm.insert(new Triangle());
-	sm.insert(new Triangle(Point(0, 0), Point(1, 1), Point(2, 2)));
-	sm.insert(new Circle(Point(1.23, 4.56), 7.89));
+    Menu menu; // ë©”ë‰´ ê°ì²´ ìƒì„±
+    while (true) {
+        int mainChoice = menu.selectMainMenu();
+        if (mainChoice == 0) break; // ì¢…ë£Œ
 
-	for (int i = 0; i < 10; ++i)
-		sm.insert(new Rectangle(Point(i, i + 1), Point(i * 2, i * 3)));
+        switch (mainChoice) {
+        // [ì¶”ê°€]
+        case 1: 
+        {
+            int type = menu.selectShapeType();
+            Shape* p = nullptr;
 
-	// 3. °ü¸®ÇÏ°í ÀÖ´Â ¸ğµç µµÇüÀ» ±×¸²
-	sm.draw();
+            switch (type) {
+            // ëœë¤í•œ ë„í˜• ìƒì„± (ê¸°ë³¸ ìƒì„±ì)
+            case 0: 
+            { 
+				int randType = rand() % 3; // 0:Triangle, 1:Rectangle, 2:Circle
+				type = randType + 1; // ë©”ë‰´ ì„ íƒê³¼ ë§ì¶”ê¸° ìœ„í•´ +1
 
-	// ÀÌ ÇÁ·Î±×·¥¿¡¼­ Àß¸øµÈ Á¡À» Ã£À» ¼ö ÀÖ´Â°¡?
-	// Àß¸øµÈ Á¡À» ¾î¶»°Ô Ã£À» ¼ö ÀÖ´Â°¡?
+                switch (randType) {
+                case 0:
+                    p = new Triangle();
+                    break;
+                case 1:
+                    p = new Rectangle();
+                    break;
+                case 2: 
+                    p = new Circle();
+                    break;
+                }
+                break;
+            }
+            // Triangle
+            case 1: 
+            {
+                int x1, y1, x2, y2, x3, y3;
+                std::cout << "ì„¸ ì ì˜ ì¢Œí‘œë¥¼ ì…ë ¥í•˜ì„¸ìš” (x1 y1 x2 y2 x3 y3): ";
+                std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+                p = new Triangle(Point(x1, y1), Point(x2, y2), Point(x3, y3));
+                break;
+            }
+            // Rectangle
+            case 2: 
+            {
+                int rx1, ry1, rx2, ry2;
+                std::cout << "ë‘ ì ì˜ ì¢Œí‘œë¥¼ ì…ë ¥í•˜ì„¸ìš” (x1 y1 x2 y2): ";
+                std::cin >> rx1 >> ry1 >> rx2 >> ry2;
+                p = new Rectangle(Point(rx1, ry1), Point(rx2, ry2));
+                break;
+            }
+            // Circle
+            case 3: 
+            {
+                int cx, cy;
+                double radius;
+                std::cout << "ì›ì˜ ì¤‘ì‹¬ ì¢Œí‘œì™€ ë°˜ì§€ë¦„ì„ ì…ë ¥í•˜ì„¸ìš” (x y radius): ";
+                std::cin >> cx >> cy >> radius;
+                p = new Circle(Point(cx, cy), radius);
+                break;
+            }
+            default:
+                std::cout << "ì˜ëª»ëœ ë„í˜• íƒ€ì…ì…ë‹ˆë‹¤." << std::endl;
+                break;
+            }
 
-	// 1. °³º° µµÇüµéÀÇ ¼Ò¸êÀÚ°¡ È£ÃâÀÌ ¾ÈµÊ -> ShapeManager ¼Ò¸êÀÚ¿¡¼­ °³º° µµÇüµéÀ» »èÁ¦ÇÏµµ·Ï ¼öÁ¤ÇÔ.
-	// 2. ±×·³¿¡µµ ¼Ò¸êÀÚ È£ÃâÀÌ ¾ÈµÊ -> Shape Å¬·¡½ºÀÇ ¼Ò¸êÀÚ¸¦ °¡»ó ¼Ò¸êÀÚ·Î ¼öÁ¤ÇÔ. (virtual Ãß°¡)
+            if (p) sm.insert(p);
+            break;
+        }
+        // [ì‚­ì œ]
+        case 2: 
+        {
+            int delMode = menu.selectDeleteMode();
+            if (delMode == 1) {
+                // ì¸ë±ìŠ¤ë¡œ ì‚­ì œ
+                sm.draw(); // ëª©ë¡ì„ ë¨¼ì € ë³´ì—¬ì£¼ë©´ ì¢‹ìŒ
+                int idx = menu.inputIndex();
+                sm.removeAt(idx);
+            } else if (delMode == 2) {
+                // íƒ€ì…ìœ¼ë¡œ ì „ì²´ ì‚­ì œ
+                int type = menu.selectShapeType(); // ì–´ë–¤ íƒ€ì… ì§€ìš¸ì§€ ì„ íƒ
+                sm.removeByType(type);
+            }
+            break;
+        }
+        // [ê·¸ë¦¬ê¸°]
+        case 3: 
+            sm.draw();
+            break;
+        }
+    }
 }

@@ -1,14 +1,14 @@
-// Menu.h
+ï»¿// Menu.h
 #pragma once
 
 class Menu {
 public:
-	// ¸ŞÀÎ ¸Ş´º ¼±ÅÃ
+	// ë©”ì¸ ë©”ë‰´ ì„ íƒ
 	int selectMainMenu();
-	// µµÇü Á¾·ù ¼±ÅÃ (Ãß°¡/»èÁ¦ °ø¿ë)
+	// ë„í˜• ì¢…ë¥˜ ì„ íƒ (ì¶”ê°€/ì‚­ì œ ê³µìš©)
 	int selectShapeType();
-	// »èÁ¦ ¹æ½Ä ¼±ÅÃ
+	// ì‚­ì œ ë°©ì‹ ì„ íƒ
 	int selectDeleteMode();
-	// ÀÎµ¦½º ÀÔ·Â ¹Ş±â
+	// ì¸ë±ìŠ¤ ì…ë ¥ ë°›ê¸°
 	int inputIndex();
 };

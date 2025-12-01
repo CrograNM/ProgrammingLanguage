@@ -1,18 +1,18 @@
-#pragma once
+ï»¿#pragma once
 
 //---------------------------------------------------
 // Shape.h		class Shape - Virtual Base Class
-//				ÀÌ Å¬·¡½º´Â Ãß»ó Å¬·¡½º(abstract class)ÀÌ´Ù.
+//				ì´ í´ë˜ìŠ¤ëŠ” ì¶”ìƒ í´ë˜ìŠ¤(abstract class)ì´ë‹¤.
 //---------------------------------------------------
 
-#ifndef _Shape	// _ShapeÀÌ ¾Õ¿¡¼­ Á¤ÀÇµÇÁö ¾Ê¾Ò´Ù¸é
-#define _Shape	// _Shape Á¤ÀÇ
+#ifndef _Shape	// _Shapeì´ ì•ì—ì„œ ì •ì˜ë˜ì§€ ì•Šì•˜ë‹¤ë©´
+#define _Shape	// _Shape ì •ì˜
 
 class Shape {
 public:
 	Shape() { };
-	virtual ~Shape() { }; // virtual Ãß°¡ 
-	virtual void draw() const = 0;	// ¼ø¼ö °¡»ó ÇÔ¼ö(pure virtual function)
+	virtual ~Shape() { }; // virtual ì¶”ê°€ 
+	virtual void draw() const = 0;	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜(pure virtual function)
 };
 
 #endif // _Shape
