@@ -14,21 +14,31 @@
 using namespace std;
 
 class Animal {
+public:
+	void move() { 
+		cout << name << "이야 - 움직이니까 동물이다" << endl;
+	}
+
 private:
 	string name;
 };
 
 class Dog : public Animal {
 private:
-	int speed;
+	int speed = 0;
+
+public:
+	Dog(const char* n) { 
+		
+	}
 };
 
 //--------
 int main()
 //--------
 {
-	// Dog dog { "코코" };
-	// cout << dog << endl; // 출력 - 나는 코코입니다.
+	Dog dog { "코코" };
+	dog.move();
 
-	save("main.cpp");
+	// save("main.cpp");
 }
