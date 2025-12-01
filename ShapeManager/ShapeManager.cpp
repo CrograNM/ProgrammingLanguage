@@ -34,6 +34,35 @@ ShapeManager::~ShapeManager()
 
 void ShapeManager::insert(Shape* a)
 {
+	// 1. 공간이 꽉 찼는지 확인
+	if (nShape >= capacity) {
+		// 2. 기존 크기의 2배로 확장
+		int newCapacity = capacity * 2;
+
+		// 만약 capacity가 0이었다면 2배 해도 0이므로 기본값 설정 (안전장치)
+		if (newCapacity == 0) newCapacity = 10;
+
+		Shape** newShapes = new Shape * [newCapacity];
+
+		// 디버깅용 메시지 (확인용)
+		std::cout << ">> 저장 공간이 부족하여 크기를 늘립니다. ("
+			<< capacity << " -> " << newCapacity << ")\n";
+
+		// 3. 기존 데이터 복사
+		for (int i = 0; i < nShape; ++i) {
+			newShapes[i] = shapes[i];
+		}
+
+		// 4. 기존 배열 삭제
+		// 배열 안의 도형 객체 말고 그 주소를 담고 있던 '배열 틀'만 지우기
+		delete[] shapes;
+
+		// 5. 멤버 변수가 새 배열을 가리키게 함
+		shapes = newShapes;
+		capacity = newCapacity;
+	}
+
+	// 6. 넉넉해진 공간에 도형 추가
 	shapes[nShape] = a;
 	nShape++;
 };
