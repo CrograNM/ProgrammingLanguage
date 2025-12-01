@@ -19,7 +19,7 @@ public:
 		cout << name << "이야 - 움직이니까 동물이다" << endl;
 	}
 
-private:
+protected:
 	string name;
 };
 
@@ -28,8 +28,8 @@ private:
 	int speed = 0;
 
 public:
-	Dog(const char* n) { 
-		
+	Dog(const char* str) { 
+		name = str;
 	}
 };
 
@@ -40,5 +40,5 @@ int main()
 	Dog dog { "코코" };
 	dog.move();
 
-	// save("main.cpp");
+	save("main.cpp");
 }
