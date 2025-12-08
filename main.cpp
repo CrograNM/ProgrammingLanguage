@@ -14,12 +14,72 @@
 
 using namespace std;
 
-// 시험문제 클래스 계층도
+
+// 시험문제 클래스 계층도 - 컴퓨터 세상에 살고 있는 몬스터들
+// TM - 컴퓨터를 시간을 멈추는 몬스터
+// SM - 화면에 글씨를 쓰는 몬스터
+// 
+//					Monster
+//
+//			TM			SM			???? (본인이 추가해야 할 수도)
+// 
+
+class Monster {
+public:
+	virtual void special() const = 0; // 순수 가상 함수 - Base에 Abstract가 가능하도록
+};
+
+// Time Monster
+class TM : public Monster {
+public:
+	// 컴퓨터 시간을 ms 밀리초 동안 멈추는 스페셜 기술
+	virtual void special() const override {
+		cout << "cpu 정지 - " << ms << "ms" << endl;
+		// 기술
+	}
+private:
+	int ms { 100 }; // 밀리초
+};
+
+// Screen Monster
+class SM : public Monster {
+public:
+	// num개의 랜덤 소문자['a', 'z']를 화면에 출력하는 스페셜 기술
+	virtual void special() const override { 
+		cout << "SM - ";
+		// 기술
+		cout << endl;
+	}
+private:
+	int num;
+};
 
 //--------
 int main()
 //--------
 {
+	SM s;
+	TM t;
+
+	s.special();
+	t.special();
+
+	// <아래 중에 4~6개 출시될듯>
 	
+	// 입력받은 수 num 만큼 몬스터들을 관리한다.
+	// num개의 몬스터들은 랜덤하게 TM, SM 으로 채운다.
+
+	// TM 몬스터들을 ms 기준 오름차순으로 정렬했을 때 정렬한 결과를 화면에 출력하라.
+	
+	// TM 중에서 100ms 정지하는 몬스터들을 제거하라.
+	// TM 전부를 제거하라.
+	
+	// 남은 것들은 전부 SM일텐데, num 기준으로 정렬하라. (contigous임)
+
+	// 현재 num 마리 Monster를 관리 중인데 2배를 더 관리하고 싶다.
+	// 예시 코드가 문제없게 실행되게 코딩하라.
+	
+	// 메모리 다 정리하고 끝내도록 코딩하라.
+
 	save("main.cpp");
 }

@@ -11880,3 +11880,76 @@ int main()
 
 	save("main.cpp");
 }
+
+=========================================
+Save Time: 12/8/2025 7:02:02 PM Monday
+=========================================
+
+﻿// ----------------------------------------------------------------------
+// 12.15 월요일(15주 1일) - 기말시험(다형성)
+// ----------------------------------------------------------------------
+// class 간의 관계 - 상속(Inheritance)
+// - 코드 재활용
+// - 다형성(Polymorphism) 구현하려고
+//		-> One Interface, Multiple Behaviors
+// ----------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <random>
+#include "save.h"
+
+using namespace std;
+
+
+// 시험문제 클래스 계층도 - 컴퓨터 세상에 살고 있는 몬스터들
+// TM - 컴퓨터를 시간을 멈추는 몬스터
+// SM - 화면에 글씨를 쓰는 몬스터
+// 
+//					Monster
+//
+//			TM			SM			???? (본인이 추가해야 할 수도)
+// 
+
+class Monster {
+public:
+	virtual void special() const = 0; // 순수 가상 함수 - Base에 Abstract가 가능하도록
+};
+
+// Time Monster
+class TM : public Monster {
+public:
+	// 컴퓨터 시간을 ms 밀리초 동안 멈추는 스페셜 기술
+	virtual void special() const override {
+		cout << "cpu 정지 - " << ms << "ms" << endl;
+		// 기술
+	}
+private:
+	int ms { 100 }; // 밀리초
+};
+
+// Screen Monster
+class SM : public Monster {
+public:
+	// num개의 랜덤 글자를 화면에 출력하는 스페셜 기술
+	virtual void special() const override { 
+		cout << "SM - ";
+		// 기술
+		cout << endl;
+	}
+private:
+	int num;
+};
+
+//--------
+int main()
+//--------
+{
+	SM s;
+	TM t;
+
+	s.special();
+	t.special();
+
+	save("main.cpp");
+}
