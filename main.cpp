@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include <string>
-
+#include <random>
 #include "save.h"
 
 using namespace std;
@@ -52,8 +52,7 @@ class Bird : public Animal {
 int main()
 //--------
 {
-	Bird bird("토리");
-	bird.move(); // 토리 - 난다
-
+	
+	
 	// save("main.cpp");
 }
