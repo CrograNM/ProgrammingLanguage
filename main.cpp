@@ -10,6 +10,8 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <chrono>
+#include <thread>
 #include "save.h"
 
 using namespace std;
@@ -26,19 +28,30 @@ using namespace std;
 
 class Monster {
 public:
+	Monster() : id(++gid) {}
 	virtual void special() const = 0; // 순수 가상 함수 - Base에 Abstract가 가능하도록
+
+protected:
+	int id;								// 몬스터 고유 번호
+	static int gid;
 };
+
+int Monster::gid = 0;
+default_random_engine dre{ 20251215 };
+uniform_int_distribution uidMS{ 1, 200 };
+uniform_int_distribution uidNUM{ 1, 60 };
+uniform_int_distribution<int> uidC{ 'a', 'z' };
 
 // Time Monster
 class TM : public Monster {
 public:
 	// 컴퓨터 시간을 ms 밀리초 동안 멈추는 스페셜 기술
 	virtual void special() const override {
-		cout << "cpu 정지 - " << ms << "ms" << endl;
-		// 기술
+		cout << id << ", cpu 정지 - " << ms << "ms" << endl;
+		this_thread::sleep_for(chrono::milliseconds(ms));
 	}
 private:
-	int ms { 100 }; // 밀리초
+	int ms { uidMS(dre) }; // 밀리초
 };
 
 // Screen Monster
@@ -46,23 +59,28 @@ class SM : public Monster {
 public:
 	// num개의 랜덤 소문자['a', 'z']를 화면에 출력하는 스페셜 기술
 	virtual void special() const override { 
-		cout << "SM - ";
-		// 기술
+		cout << id << ", SM - ";
+		for (int i = 0; i < num; ++i) 
+			cout << static_cast<char>(uidC(dre));
 		cout << endl;
 	}
 private:
-	int num;
+	int num { uidNUM(dre) };
 };
 
 //--------
 int main()
 //--------
 {
-	SM s;
-	TM t;
+	SM s[10];
+	TM t[5];
 
-	s.special();
-	t.special();
+	for (const SM& mon : s)
+		mon.special();
+
+	for (const TM& mon : t)
+		mon.special();
+
 
 	// <아래 중에 4~6개 출시될듯>
 	
