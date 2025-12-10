@@ -72,16 +72,15 @@ private:
 int main()
 //--------
 {
-	SM s[10];
-	TM t[5];
+	SM s;
+	TM t;
 
-	for (const SM& mon : s)
-		mon.special();
+	Monster* p[2];
+	p[0] = &t;
+	p[1] = &s;
 
-	for (const TM& mon : t)
-		mon.special();
-
-	// 위 코드가 다형성을 구현한 것은 아니다.
+	for (const Monster* pMon : p)
+		pMon->special();
 
 	save("main.cpp");
 }
