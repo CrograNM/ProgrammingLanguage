@@ -79,8 +79,15 @@ int main()
 	p[0] = &t;
 	p[1] = &s;
 
-	for (const Monster* pMon : p)
-		pMon->special();
+	// [문제] 몬스터 중에서 SM만 special() 함수를 부르고 싶다.
+	//	--> 다운 캐스팅 (down casting) 
+	//		--> dynamic_cast 활용
+
+	cout << "SM만 출력" << endl;
+	for ( Monster* pMon : p ) {
+		if ( dynamic_cast<SM*>(pMon) ) 
+			pMon->special();
+	}
 
 	save("main.cpp");
 }
