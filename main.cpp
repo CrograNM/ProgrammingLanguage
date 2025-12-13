@@ -76,7 +76,7 @@ uniform_int_distribution uid{ 1, 1000 };
 int main()
 //--------
 {
-	// 예상 몬스터 파일
+	// 예상 몬스터 파일 
 	ofstream out{ "monster.txt" };
 	const int mCount = 5;
 	out << mCount << ' ';
@@ -87,8 +87,9 @@ int main()
 	// 몬스터 파일 읽기
 	ifstream in{ "monster.txt" };
 	int n;
-	in >> n;
+	in >> n; // 전체 몬스터 수
 
+	Monster** monsters = new Monster*[n]; // 다형성 배열
 
 	save("main.cpp");
 }
