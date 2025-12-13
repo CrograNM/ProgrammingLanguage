@@ -137,6 +137,7 @@
   <ItemGroup>
     <Text Include="2025 2학기 프로그래밍언어 강의저장.txt" />
     <Text Include="강조.txt" />
+    <Text Include="기말예시.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
