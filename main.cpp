@@ -57,8 +57,10 @@ public:
 	// 컴퓨터 시간을 ms 밀리초 동안 멈추는 스페셜 기술
 	virtual void special() const override {
 		cout << id << ", cpu 정지 - " << ms << "ms" << endl;
-		this_thread::sleep_for(chrono::milliseconds(ms));
+		// this_thread::sleep_for(chrono::milliseconds(ms));
 	}
+
+	int getMS() const { return ms; }
 private:
 	int ms { uidMS(dre) }; // 밀리초
 };
@@ -77,6 +79,8 @@ public:
 			cout << static_cast<char>(uidC(dre));
 		cout << endl;
 	}
+
+	int getNum() const { return num; }
 private:
 	int num { uidNUM(dre) };
 };
@@ -96,6 +100,18 @@ public:
 //---------------------------------------------------------------------------------------
 
 uniform_int_distribution uid{ 1, 1000 };
+int MS기준오름차순(const void* a, const void* b)
+{
+	const TM* tma = *(const TM**)a;
+	const TM* tmb = *(const TM**)b;
+	return tma->getMS() - tmb->getMS();
+}
+int num기준오름차순(const void* a, const void* b)
+{
+	const SM* sma = *(const SM**)a;
+	const SM* smb = *(const SM**)b;
+	return sma->getNum() - smb->getNum();
+}
 
 //--------
 int main()
@@ -139,12 +155,83 @@ int main()
 		}
 	}
 
-	cout << "\n=== 몬스터들의 스페셜 기술 발동 ===" << endl;
+	cout << "\n=== 몬스터들 ===" << endl;
 	for (int i = 0; i < n; ++i) {
 		몬스터들[i]->special(); // 다형성 호출
 	}
 
-	cout << "\n=== 몬스터들 소멸 ===" << endl;
+	// TM 몬스터들을 ms 기준 오름차순으로 정렬했을 때 정렬한 결과를 화면에 출력하라.
+	cout << "\n=== TM 몬스터들을 ms 기준 오름차순 정렬 ===" << endl;
+	{
+		TM** tms = new TM * [n]; // TM 몬스터들만 담을 배열
+		int tmCount = 0;
+		for (int i = 0; i < n; ++i) {
+			TM* tmPtr = dynamic_cast<TM*>(몬스터들[i]);
+			if (tmPtr != nullptr) {
+				tms[tmCount++] = tmPtr;
+			}
+		}
+		qsort(tms, tmCount, sizeof(TM*), MS기준오름차순);
+		for (int i = 0; i < tmCount; ++i) {
+			tms[i]->special();
+		}
+	}
+
+	// TM 중에서 100ms 이상인 몬스터들을 제거하라.
+	cout << "\n=== TM 몬스터들 중에서 100ms 이상인 몬스터들 제거 ===" << endl;
+	{
+		int newCount = 0;
+		for (int i = 0; i < n; ++i) {
+			TM* tmPtr = dynamic_cast<TM*>(몬스터들[i]);
+			if (tmPtr != nullptr && tmPtr->getMS() >= 100) 
+				delete 몬스터들[i]; // 메모리 해제
+			else 
+				몬스터들[newCount++] = 몬스터들[i];
+		}
+		n = newCount; // 몬스터 수 갱신
+	}
+
+	// TM 전부를 제거하라. (dynamic_cast)
+	cout << "\n=== TM 몬스터들 전부 제거 ===" << endl;
+	{
+		int newCount = 0;
+		for (int i = 0; i < n; ++i) {
+			TM* tmPtr = dynamic_cast<TM*>(몬스터들[i]);
+			if (tmPtr != nullptr)
+				delete 몬스터들[i]; // 메모리 해제
+			else
+				몬스터들[newCount++] = 몬스터들[i];
+		}
+		n = newCount; // 몬스터 수 갱신
+	}
+
+	// 남은 몬스터들 스페셜 기술 발동
+	cout << "\n=== 몬스터들 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		몬스터들[i]->special(); // 다형성 호출
+	}
+
+	// NM 전부를 제거하라.
+	cout << "\n=== NM 몬스터들 전부 제거 ===" << endl;
+	{
+		int newCount = 0;
+		for (int i = 0; i < n; ++i) {
+			NM* nmPtr = dynamic_cast<NM*>(몬스터들[i]);
+			if (nmPtr != nullptr)
+				delete 몬스터들[i]; // 메모리 해제
+			else
+				몬스터들[newCount++] = 몬스터들[i];
+		}
+		n = newCount; // 몬스터 수 갱신
+	}
+
+	// 남은 몬스터들 스페셜 기술 발동
+	cout << "\n=== 몬스터들 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		몬스터들[i]->special(); // 다형성 호출
+	}
+
+	cout << "\n=== 모든 몬스터들 소멸 ===" << endl;
 	for (int i = 0; i < n; ++i) {
 		delete 몬스터들[i];		// 각 동물 객체 메모리 해제
 	}
