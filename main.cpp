@@ -231,6 +231,13 @@ int main()
 		몬스터들[i]->special(); // 다형성 호출
 	}
 
+	// 남은 것들은 전부 SM일텐데, num 기준으로 정렬하라. (contigous임) 
+	cout << "\n=== (남은) SM 몬스터들을 num 기준 오름차순 정렬 ===" << endl;
+	qsort(몬스터들, n, sizeof(Monster*), num기준오름차순);
+	for (int i = 0; i < n; ++i) {
+		몬스터들[i]->special(); // 다형성 호출
+	}
+
 	cout << "\n=== 모든 몬스터들 소멸 ===" << endl;
 	for (int i = 0; i < n; ++i) {
 		delete 몬스터들[i];		// 각 동물 객체 메모리 해제
