@@ -30,6 +30,10 @@ using namespace std;
 class Monster {
 public:
 	Monster() : id(++gid) {}
+	virtual ~Monster() {
+		cout << id << " 몬스터 소멸" << endl;
+	}
+
 	virtual void special() const = 0; // 순수 가상 함수 - Base에 Abstract가 가능하도록
 
 protected:
@@ -46,6 +50,10 @@ uniform_int_distribution<int> uidC{ 'a', 'z' };
 // Time Monster
 class TM : public Monster {
 public:
+	~TM() {
+		cout << "TM 소멸" << endl;
+	}
+
 	// 컴퓨터 시간을 ms 밀리초 동안 멈추는 스페셜 기술
 	virtual void special() const override {
 		cout << id << ", cpu 정지 - " << ms << "ms" << endl;
@@ -58,6 +66,10 @@ private:
 // Screen Monster
 class SM : public Monster {
 public:
+	~SM() {
+		cout << "SM 소멸" << endl;
+	}
+
 	// num개의 랜덤 소문자['a', 'z']를 화면에 출력하는 스페셜 기술
 	virtual void special() const override { 
 		cout << id << ", SM - ";
@@ -72,6 +84,10 @@ private:
 // New Monster
 class NM : public Monster {
 public:
+	~NM() {
+		cout << "NM 소멸" << endl;
+	}
+
 	virtual void special() const override {
 		cout << id << ", 새로운 몬스터!!!" << endl;
 	}
@@ -86,19 +102,53 @@ int main()
 //--------
 {
 	// 예상 몬스터 파일 
-	ofstream out{ "monster.txt" };
-	const int mCount = 5;
-	out << mCount << ' ';
-	for (int i = 0; i < mCount; ++i) {
-		out << uid(dre) << ' ';
+	{
+		ofstream out{ "monster.txt" };
+		const int mCount = 10;
+		out << mCount << ' ';
+		for (int i = 0; i < mCount; ++i) {
+			out << uid(dre) << ' ';
+		}
 	}
 
 	// 몬스터 파일 읽기
 	ifstream in{ "monster.txt" };
+	if (!in) {
+		cout << "몬스터 파일 열기 실패!" << endl;
+		return 1;
+	}
+
 	int n;
 	in >> n; // 전체 몬스터 수
+	cout << "\n=== 몬스터 " << n << "마리 생성 ===" << endl;
 
-	Monster** monsters = new Monster*[n]; // 다형성 배열
+	Monster** 몬스터들 = new Monster*[n]; // 다형성 배열
+	for (int i = 0; i < n; ++i) {
+		int t;
+		in >> t;
+		switch (t % 3) {
+		case 0:
+			몬스터들[i] = new TM;
+			break;
+		case 1:
+			몬스터들[i] = new SM;
+			break;
+		case 2:
+			몬스터들[i] = new NM;
+			break;
+		}
+	}
 
-	save("main.cpp");
+	cout << "\n=== 몬스터들의 스페셜 기술 발동 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		몬스터들[i]->special(); // 다형성 호출
+	}
+
+	cout << "\n=== 몬스터들 소멸 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		delete 몬스터들[i];		// 각 동물 객체 메모리 해제
+	}
+	delete[] 몬스터들;		// 우리 배열 메모리 해제
+
+	// save("main.cpp");
 }
