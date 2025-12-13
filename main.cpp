@@ -68,6 +68,15 @@ public:
 private:
 	int num { uidNUM(dre) };
 };
+
+// New Monster
+class NM : public Monster {
+public:
+	virtual void special() const override {
+		cout << id << ", 새로운 몬스터!!!" << endl;
+	}
+};
+
 //---------------------------------------------------------------------------------------
 
 uniform_int_distribution uid{ 1, 1000 };
