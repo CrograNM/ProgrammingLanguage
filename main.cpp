@@ -238,11 +238,44 @@ int main()
 		몬스터들[i]->special(); // 다형성 호출
 	}
 
+	// 현재 num 마리 Monster를 관리 중인데 2배를 더 관리하고 싶다.
+	cout << "\n=== 몬스터들 배열 2배 확장 ===" << endl;
+	Monster** 추가몬스터들 = new Monster * [n * 2];
+	for (int i = 0; i < n; ++i) {
+		추가몬스터들[i] = 몬스터들[i];
+	}
+	delete[] 몬스터들; // 기존 배열 메모리 해제
+	몬스터들 = 추가몬스터들;
+
+	// 새로운 몬스터들을 n마리 더 추가
+	cout << "\n=== 새로운 몬스터들 " << n << "마리 추가 생성 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		int t = uid(dre);
+		switch (t % 3) {
+		case 0:
+			몬스터들[n + i] = new TM;
+			break;
+		case 1:
+			몬스터들[n + i] = new SM;
+			break;
+		case 2:
+			몬스터들[n + i] = new NM;
+			break;
+		}
+	}
+	n *= 2; // 몬스터 수 갱신
+
+	// 최종 몬스터들 스페셜 기술 발동
+	cout << "\n=== 최종 몬스터들 ===" << endl;
+	for (int i = 0; i < n; ++i) {
+		몬스터들[i]->special(); // 다형성 호출
+	}
+
 	cout << "\n=== 모든 몬스터들 소멸 ===" << endl;
 	for (int i = 0; i < n; ++i) {
 		delete 몬스터들[i];		// 각 동물 객체 메모리 해제
 	}
 	delete[] 몬스터들;		// 우리 배열 메모리 해제
 
-	// save("main.cpp");
+	save("main.cpp");
 }
