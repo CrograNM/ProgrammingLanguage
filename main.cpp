@@ -12,11 +12,12 @@
 #include <random>
 #include <chrono>
 #include <thread>
+#include <fstream>
 #include "save.h"
 
 using namespace std;
 
-
+//---------------------------------------------------------------------------------------
 // 시험문제 클래스 계층도 - 컴퓨터 세상에 살고 있는 몬스터들
 // TM - 컴퓨터를 시간을 멈추는 몬스터
 // SM - 화면에 글씨를 쓰는 몬스터
@@ -67,12 +68,27 @@ public:
 private:
 	int num { uidNUM(dre) };
 };
+//---------------------------------------------------------------------------------------
+
+uniform_int_distribution uid{ 1, 1000 };
 
 //--------
 int main()
 //--------
 {
-		
+	// 예상 몬스터 파일
+	ofstream out{ "monster.txt" };
+	const int mCount = 5;
+	out << mCount << ' ';
+	for (int i = 0; i < mCount; ++i) {
+		out << uid(dre) << ' ';
+	}
+
+	// 몬스터 파일 읽기
+	ifstream in{ "monster.txt" };
+	int n;
+	in >> n;
+
 
 	save("main.cpp");
 }
