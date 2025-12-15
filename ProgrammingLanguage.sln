@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11304.174 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ProgrammingLanguage", "ProgrammingLanguage.vcxproj", "{E664CC65-7498-4E98-AD85-FDCD3B8B464A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShapeManager", "ShapeManager\ShapeManager.vcxproj", "{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FinalTest_Practice", "..\FinalTest_Practice\FinalTest_Practice.vcxproj", "{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}.Release|x64.Build.0 = Release|x64
 		{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}.Release|x86.ActiveCfg = Release|Win32
 		{ED40D899-BB47-4C60-B1EC-FB0DF499CE11}.Release|x86.Build.0 = Release|Win32
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Debug|x64.ActiveCfg = Debug|x64
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Debug|x64.Build.0 = Debug|x64
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Debug|x86.ActiveCfg = Debug|Win32
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Debug|x86.Build.0 = Debug|Win32
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Release|x64.ActiveCfg = Release|x64
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Release|x64.Build.0 = Release|x64
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Release|x86.ActiveCfg = Release|Win32
+		{470BC2BD-9F52-4858-BA8F-88E32EADAB8B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
